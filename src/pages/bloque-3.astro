@@ -1,5 +1,8 @@
 ---
 import BloqueLayout from '../layouts/BloqueLayout.astro';
+import QAToolSelector from '../components/games/QAToolSelector.tsx';
+import FunnelDetective from '../components/games/FunnelDetective.tsx';
+import StagingBugQuiz from '../components/games/StagingBugQuiz.tsx';
 ---
 
 <BloqueLayout 
@@ -135,6 +138,12 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
         </div>
       </div>
     </div>
+    
+    <!-- Mini-juego: QA Tool Selector -->
+    <div class="mt-12 max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: ¿Qué herramientas usas?</h3>
+      <QAToolSelector client:visible />
+    </div>
   </section>
 
   <!-- Validación cruzada -->
@@ -196,6 +205,12 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
     <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto mt-8 text-center">
       <p class="text-lg font-bold">"Si aprendes a seguir el rastro, ningún error se esconde."</p>
     </div>
+    
+    <!-- Mini-juego: Funnel Detective -->
+    <div class="mt-12 max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: Encuentra el error en el funnel</h3>
+      <FunnelDetective client:visible />
+    </div>
   </section>
 
   <!-- Validar en diferentes entornos -->
@@ -217,13 +232,19 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
       </ul>
     </div>
 
-    <div class="bg-red-500/10 border-l-4 border-red-500 p-6 rounded-r-xl max-w-2xl mx-auto">
+    <div class="bg-red-500/10 border-l-4 border-red-500 p-6 rounded-r-xl max-w-2xl mx-auto mb-12">
       <h3 class="font-bold text-red-400 mb-4">⚠️ Casos frecuentes:</h3>
       <ul class="space-y-2 text-slate-300">
         <li>• Eventos que desaparecen en producción</li>
         <li>• Cambios en DOM que rompen triggers</li>
         <li>• Versiones antiguas de container activas</li>
       </ul>
+    </div>
+    
+    <!-- Mini-juego: Staging Bug Quiz -->
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: ¿Por qué no funciona en producción?</h3>
+      <StagingBugQuiz client:visible />
     </div>
   </section>
 

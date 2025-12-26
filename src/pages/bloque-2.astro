@@ -1,5 +1,10 @@
 ---
 import BloqueLayout from '../layouts/BloqueLayout.astro';
+import DataLayerBuilder from '../components/games/DataLayerBuilder.tsx';
+import TriggerQuiz from '../components/games/TriggerQuiz.tsx';
+import VariableSelector from '../components/games/VariableSelector.tsx';
+import DebuggingChallenge from '../components/games/DebuggingChallenge.tsx';
+import BossFightBloque2 from '../components/games/BossFightBloque2.tsx';
 ---
 
 <BloqueLayout 
@@ -51,12 +56,18 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
     </div>
 
     <!-- Código técnico -->
-    <div class="bg-slate-900 rounded-xl p-6 max-w-3xl mx-auto">
+    <div class="bg-slate-900 rounded-xl p-6 max-w-3xl mx-auto mb-12">
       <h4 class="text-blue-400 font-bold mb-4">🔧 Técnicamente (muy simple)</h4>
       <p class="text-slate-300 mb-4">El dataLayer es una variable que ya existe en tu web cuando instalas GTM:</p>
       <pre class="bg-black p-4 rounded-lg text-green-400 font-mono text-sm overflow-x-auto mb-4">dataLayer = []   // ← Un array vacío esperando información</pre>
       <p class="text-slate-300 mb-4">Cuando algo pasa, la web "empuja" (push) información a ese array:</p>
       <pre class="bg-black p-4 rounded-lg text-green-400 font-mono text-sm overflow-x-auto">dataLayer.push({'{'} event: 'algo_pasó' {'}'})   // ← "Oye GTM, pasó algo!"</pre>
+    </div>
+    
+    <!-- Mini-juego: Construir dataLayer -->
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: Construye tu primer evento</h3>
+      <DataLayerBuilder client:visible />
     </div>
   </section>
 
@@ -141,13 +152,19 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
       </div>
     </div>
 
-    <div class="bg-emerald-500/10 p-6 rounded-xl max-w-2xl mx-auto">
+    <div class="bg-emerald-500/10 p-6 rounded-xl max-w-2xl mx-auto mb-12">
       <h4 class="font-bold mb-4">📌 Ejemplo de condicional:</h4>
       <ul class="space-y-2 text-slate-300">
         <li>✅ <strong>Evento:</strong> add_to_cart</li>
         <li>✅ <strong>Condición:</strong> price > 0</li>
         <li>✅ <strong>Acción:</strong> disparar GA4 event</li>
       </ul>
+    </div>
+    
+    <!-- Mini-juego: Configurador de Triggers -->
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: Configura un trigger</h3>
+      <TriggerQuiz client:visible />
     </div>
   </section>
 
@@ -187,6 +204,12 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
 
 // Variable transaction_id extraída → GA4 event
 // Variable revenue → envío a Ads</pre>
+    </div>
+    
+    <!-- Mini-juego: Selector de Variables -->
+    <div class="mt-12 max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: Selector de Variables</h3>
+      <VariableSelector client:visible />
     </div>
   </section>
 
@@ -249,7 +272,7 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
       </div>
     </div>
 
-    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto">
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-12">
       <h3 class="font-bold mb-4">🧠 Errores comunes a detectar:</h3>
       <div class="space-y-3">
         <div class="flex items-center gap-3">
@@ -269,6 +292,12 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
           <span><strong>Variables undefined:</strong> No capturadas correctamente</span>
         </div>
       </div>
+    </div>
+    
+    <!-- Mini-juego: Debugging Challenge -->
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: Encuentra el bug</h3>
+      <DebuggingChallenge client:visible />
     </div>
   </section>
 
@@ -314,6 +343,14 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
           <span>Documentación clara del schema</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Boss Fight -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">⚔️ Boss Fight: El Evento Fantasma</h2>
+    <div class="max-w-3xl mx-auto">
+      <BossFightBloque2 client:visible />
     </div>
   </section>
 

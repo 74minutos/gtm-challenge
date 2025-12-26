@@ -1,5 +1,7 @@
 ---
 import BloqueLayout from '../layouts/BloqueLayout.astro';
+import AttributionQuiz from '../components/games/AttributionQuiz.tsx';
+import InsightToAction from '../components/games/InsightToAction.tsx';
 ---
 
 <BloqueLayout 
@@ -99,9 +101,31 @@ import BloqueLayout from '../layouts/BloqueLayout.astro';
       <p class="text-slate-300">No basta con leer datos. Hay que conectarlos con <strong>acciones reales</strong>.</p>
     </div>
 
-    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto">
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto mb-12">
       <p class="text-lg">Un marketer que sabe leer datos es valioso.</p>
       <p class="text-xl font-bold text-amber-300">Un marketer que sabe convertir datos en acciones es imprescindible.</p>
+    </div>
+    
+    <!-- Mini-juego: Insight to Action -->
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: ¿Qué acción tomas?</h3>
+      <InsightToAction client:visible />
+    </div>
+  </section>
+  
+  <!-- Atribución -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">📊 Análisis de Atribución</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4">Una de las habilidades más valiosas es saber leer datos de atribución.</p>
+      <p class="text-slate-300">No todos los canales son iguales. <strong>El volumen engaña.</strong> Lo que importa es el valor por conversión.</p>
+    </div>
+    
+    <!-- Mini-juego: Attribution Quiz -->
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center mb-6">🎮 Tu turno: Analiza la atribución</h3>
+      <AttributionQuiz client:visible />
     </div>
   </section>
 
