@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@theme {
+  --font-family-sans: 'Space Grotesk', system-ui, sans-serif;
+  
+  --color-cream: #fefdf4;
+  --color-cream-dark: #f7f3e2;
+  --color-ink: #2a261f;
+  --color-ink-light: #5d5548;
+  --color-primary: #ffce54;
+  --color-primary-dark: #e0ab2f;
+  --color-secondary: #8bd1c7;
+  --color-accent: #f97f82;
+  --color-success: #7bc96f;
+  --color-warning: #feca57;
+  --color-danger: #e57373;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-ink);
+}
+
+/* Botón primario */
+.btn-primary {
+  @apply inline-block bg-ink text-cream px-6 py-3 font-medium rounded-lg 
+         hover:bg-ink-light transition-colors duration-200 cursor-pointer;
+}
+
+.btn-secondary {
+  @apply inline-block border-2 border-ink text-ink px-6 py-3 font-medium rounded-lg 
+         hover:bg-ink hover:text-cream transition-colors duration-200 cursor-pointer;
+}
+
+/* Cards */
+.card {
+  @apply bg-white rounded-2xl border border-cream-dark p-6 
+         shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+/* Narrator box (estilo del juego original) */
+.narrator-box {
+  @apply bg-cream-dark rounded-xl p-6 flex gap-4 items-start;
+}
+
+.narrator-icon {
+  @apply text-3xl flex-shrink-0;
+}
+
+/* Pills/badges */
+.pill {
+  @apply inline-block px-3 py-1 text-sm font-medium rounded-full bg-primary/20 text-ink;
+}
+
+/* Step indicators */
+.step-bullet {
+  @apply w-8 h-8 rounded-full bg-secondary flex items-center justify-center 
+         text-sm font-semibold text-ink flex-shrink-0;
+}
+
+/* Code blocks */
+.code-block {
+  @apply bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto;
+}

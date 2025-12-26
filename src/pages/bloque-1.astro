@@ -1,0 +1,147 @@
+---
+import BloqueLayout from '../layouts/BloqueLayout.astro'
+import TowerBuilder from '../components/games/TowerBuilder'
+import { bloque1Content } from '../content/course'
+---
+
+<BloqueLayout bloqueId="bloque-1" title="La Torre de Control">
+  <div class="max-w-3xl mx-auto px-6">
+    
+    <!-- Hero del bloque -->
+    <section class="py-12 text-center">
+      <span class="pill mb-4">Bloque 1 · 30 min</span>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        🏗️ La Torre de Control
+      </h1>
+      <p class="text-xl text-ink-light">
+        Tags, Triggers y Variables: los tres pilares de GTM
+      </p>
+    </section>
+
+    <!-- Introducción narrativa -->
+    <section class="py-8">
+      <div class="narrator-box">
+        <div class="narrator-icon">🧙</div>
+        <div>
+          <p class="font-semibold mb-2">El Guía dice:</p>
+          <p class="text-ink-light">
+            "Antes de construir una torre, necesitas entender los ladrillos. 
+            En GTM, hay exactamente tres tipos de ladrillos. Domínalos y podrás 
+            construir cualquier estructura de medición."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Los 3 pilares -->
+    <section class="py-12">
+      <h2 class="text-2xl font-bold mb-8">Los tres pilares</h2>
+      
+      <div class="space-y-6">
+        {bloque1Content.pilares.map((pilar, index) => (
+          <div class="card">
+            <div class="flex items-start gap-4">
+              <span class="text-4xl">{pilar.icono}</span>
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold mb-2">{pilar.nombre}</h3>
+                <p class="text-ink-light mb-4">{pilar.definicion}</p>
+                
+                <div class="bg-cream-dark rounded-lg p-4 mb-4">
+                  <p class="text-sm">
+                    <span class="font-medium">Analogía:</span> {pilar.analogia}
+                  </p>
+                </div>
+
+                <div>
+                  <p class="text-xs font-medium text-ink-light uppercase tracking-wide mb-2">
+                    Ejemplos comunes:
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    {pilar.ejemplos.map((ejemplo) => (
+                      <span class="pill text-xs">{ejemplo}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Cómo se relacionan -->
+    <section class="py-12">
+      <h2 class="text-2xl font-bold mb-6">Cómo se relacionan</h2>
+      
+      <div class="card bg-gray-900 text-white">
+        <pre class="text-sm overflow-x-auto"><code class="text-green-400">{`// El flujo de GTM simplificado:
+
+VARIABLE    →  contiene datos (ej: página actual)
+     ↓
+TRIGGER     →  evalúa condición (ej: ¿es página /checkout?)
+     ↓
+TAG         →  se ejecuta (ej: enviar evento a GA4)
+
+// En código conceptual:
+if (trigger.condition === true) {
+  tag.execute(variable.value)
+}`}</code></pre>
+      </div>
+    </section>
+
+    <!-- Mini-juego -->
+    <section class="py-12">
+      <h2 class="text-2xl font-bold mb-6">🎮 Misión: Construye tu primera torre</h2>
+      <p class="text-ink-light mb-6">
+        Arrastra los bloques en el orden correcto para crear una estructura válida de GTM.
+      </p>
+      
+      <TowerBuilder client:visible />
+    </section>
+
+    <!-- Ecosistema -->
+    <section class="py-12">
+      <h2 class="text-2xl font-bold mb-8">GTM en el ecosistema</h2>
+      
+      <div class="grid md:grid-cols-3 gap-4">
+        {bloque1Content.ecosistema.map((item) => (
+          <div class="card text-center">
+            <span class="text-3xl mb-3 block">{item.icono}</span>
+            <h3 class="font-semibold mb-2">{item.titulo}</h3>
+            <p class="text-sm text-ink-light">{item.descripcion}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Resumen -->
+    <section class="py-12">
+      <div class="narrator-box">
+        <div class="narrator-icon">✅</div>
+        <div>
+          <p class="font-semibold mb-2">Lo que has aprendido:</p>
+          <ul class="space-y-2 text-ink-light">
+            <li>• <strong>Tags</strong> = los mensajeros que envían datos</li>
+            <li>• <strong>Triggers</strong> = las condiciones que los activan</li>
+            <li>• <strong>Variables</strong> = los contenedores de información</li>
+            <li>• El orden importa: Variable → Trigger → Tag</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 text-center">
+      <h2 class="text-2xl font-bold mb-4">¿Listo para hablar el idioma?</h2>
+      <p class="text-ink-light mb-8">
+        En el siguiente bloque aprenderás sobre eventos y el dataLayer: 
+        el lenguaje secreto de GTM.
+      </p>
+      <a href="/bloque-2" class="btn-primary text-lg px-8 py-4">
+        Continuar al Bloque 2 →
+      </a>
+    </section>
+
+  </div>
+</BloqueLayout>
+

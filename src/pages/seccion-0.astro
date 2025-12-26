@@ -1,0 +1,136 @@
+---
+import BloqueLayout from '../layouts/BloqueLayout.astro'
+import { seccion0Content } from '../content/course'
+---
+
+<BloqueLayout bloqueId="seccion-0" title="¿Qué es GTM?">
+  <div class="max-w-3xl mx-auto px-6">
+    
+    <!-- Hero del bloque -->
+    <section class="py-12 text-center">
+      <span class="pill mb-4">Sección 0 · 15 min</span>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        🎯 ¿Qué es GTM?
+      </h1>
+      <p class="text-xl text-ink-light">
+        Y por qué te importa como marketer
+      </p>
+    </section>
+
+    <!-- Definición -->
+    <section class="py-12">
+      <div class="narrator-box mb-8">
+        <div class="narrator-icon">📖</div>
+        <div>
+          <p class="font-semibold mb-2">La Guía dice:</p>
+          <p class="text-ink-light">
+            "Google Tag Manager es un sistema de gestión de etiquetas que te permite 
+            actualizar rápidamente el código de seguimiento y los fragmentos de código 
+            relacionados, conocidos colectivamente como etiquetas, en tu sitio web o app móvil."
+          </p>
+          <p class="text-sm text-ink-light/60 mt-2">— Definición oficial de Google</p>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold mb-6">Tres perspectivas para entenderlo</h2>
+      
+      <div class="grid md:grid-cols-3 gap-4">
+        {seccion0Content.definicion.perspectivas.map((p) => (
+          <div class="card">
+            <span class="text-3xl mb-3 block">{p.icono}</span>
+            <h3 class="font-semibold mb-2">{p.titulo}</h3>
+            <p class="text-sm text-ink-light">{p.texto}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Problema que resuelve -->
+    <section class="py-12">
+      <h2 class="text-2xl font-bold mb-8">El problema que resuelve</h2>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Antes -->
+        <div class="card border-danger/30 bg-danger/5">
+          <h3 class="font-semibold mb-4 text-danger flex items-center gap-2">
+            <span>❌</span> {seccion0Content.problema.antes.titulo}
+          </h3>
+          <ul class="space-y-3">
+            {seccion0Content.problema.antes.puntos.map((punto) => (
+              <li class="flex items-start gap-3 text-sm text-ink-light">
+                <span class="text-danger">•</span>
+                <span>{punto}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Después -->
+        <div class="card border-success/30 bg-success/5">
+          <h3 class="font-semibold mb-4 text-success flex items-center gap-2">
+            <span>✅</span> {seccion0Content.problema.despues.titulo}
+          </h3>
+          <ul class="space-y-3">
+            {seccion0Content.problema.despues.puntos.map((punto) => (
+              <li class="flex items-start gap-3 text-sm text-ink-light">
+                <span class="text-success">•</span>
+                <span>{punto}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impacto -->
+    <section class="py-12">
+      <h2 class="text-2xl font-bold mb-8 text-center">Por qué importa para el negocio</h2>
+      
+      <div class="grid grid-cols-3 gap-4 text-center">
+        {seccion0Content.impacto.metricas.map((m) => (
+          <div class="card">
+            <p class="text-4xl font-bold text-primary-dark mb-2">{m.valor}</p>
+            <p class="text-sm text-ink-light">{m.descripcion}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Analogía -->
+    <section class="py-12">
+      <div class="narrator-box">
+        <div class="narrator-icon">💡</div>
+        <div>
+          <p class="font-semibold mb-2">Piénsalo así:</p>
+          <p class="text-ink-light mb-4">
+            Imagina que tu web es un edificio de oficinas. Cada departamento (Marketing, 
+            Analytics, Ads) necesita instalar sus propios sistemas de seguridad, sensores 
+            y cámaras.
+          </p>
+          <p class="text-ink-light mb-4">
+            <strong>Sin GTM:</strong> Cada departamento hace obra. Cables por todos lados. 
+            Nadie sabe qué hace qué. Cambiar algo = romper algo.
+          </p>
+          <p class="text-ink-light">
+            <strong>Con GTM:</strong> Hay UN panel de control central. Cualquier departamento 
+            pide lo que necesita. El administrador (tú) lo configura sin tocar cables. 
+            Histórico de cambios. Posibilidad de revertir.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 text-center">
+      <h2 class="text-2xl font-bold mb-4">¿Listo para construir tu primera torre?</h2>
+      <p class="text-ink-light mb-8">
+        En el siguiente bloque aprenderás los tres pilares de GTM: Tags, Triggers y Variables.
+      </p>
+      <a href="/bloque-1" class="btn-primary text-lg px-8 py-4">
+        Continuar al Bloque 1 →
+      </a>
+    </section>
+
+  </div>
+</BloqueLayout>
+

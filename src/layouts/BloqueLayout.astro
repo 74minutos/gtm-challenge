@@ -1,0 +1,99 @@
+---
+import '../styles/global.css'
+import { bloques } from '../content/course'
+
+interface Props {
+  bloqueId: string
+  title: string
+}
+
+const { bloqueId, title } = Astro.props
+const currentIndex = bloques.findIndex(b => b.id === bloqueId)
+const bloque = bloques[currentIndex]
+const prevBloque = currentIndex > 0 ? bloques[currentIndex - 1] : null
+const nextBloque = currentIndex < bloques.length - 1 ? bloques[currentIndex + 1] : null
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={bloque?.descripcion} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | La Evolución del Tagging</title>
+  </head>
+  <body class="min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-cream-dark">
+      <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+        <a href="/" class="text-sm font-medium text-ink hover:text-primary-dark transition-colors">
+          ← Volver al índice
+        </a>
+        
+        <div class="flex items-center gap-2 text-sm">
+          <span class="text-ink-light">{bloque?.icono}</span>
+          <span class="font-medium">{bloque?.titulo}</span>
+        </div>
+
+        <span class="text-xs text-ink-light">
+          {bloque?.duracion}
+        </span>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="pt-20 pb-24">
+      <slot />
+    </main>
+
+    <!-- Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm border-t border-cream-dark">
+      <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        {prevBloque ? (
+          <a 
+            href={`/${prevBloque.id}`}
+            class="flex items-center gap-2 text-sm text-ink-light hover:text-ink transition-colors"
+          >
+            <span>←</span>
+            <span class="hidden sm:inline">{prevBloque.titulo}</span>
+          </a>
+        ) : (
+          <span></span>
+        )}
+
+        <div class="flex gap-1">
+          {bloques.map((b, i) => (
+            <a 
+              href={`/${b.id}`}
+              class={`w-2 h-2 rounded-full transition-colors ${
+                b.id === bloqueId 
+                  ? 'bg-primary-dark' 
+                  : 'bg-cream-dark hover:bg-ink-light/30'
+              }`}
+              title={b.titulo}
+            />
+          ))}
+        </div>
+
+        {nextBloque ? (
+          <a 
+            href={`/${nextBloque.id}`}
+            class="flex items-center gap-2 text-sm font-medium text-ink hover:text-primary-dark transition-colors"
+          >
+            <span class="hidden sm:inline">{nextBloque.titulo}</span>
+            <span>→</span>
+          </a>
+        ) : (
+          <a 
+            href="/"
+            class="text-sm font-medium text-success hover:text-success/80 transition-colors"
+          >
+            ¡Completado! →
+          </a>
+        )}
+      </div>
+    </nav>
+  </body>
+</html>
+
