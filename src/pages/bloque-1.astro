@@ -1,11 +1,10 @@
 ---
 import BloqueLayout from '../layouts/BloqueLayout.astro'
 import TowerBuilder from '../components/games/TowerBuilder'
-import { bloque1Content } from '../content/course'
 ---
 
 <BloqueLayout bloqueId="bloque-1" title="La Torre de Control">
-  <div class="max-w-3xl mx-auto px-6">
+  <div class="max-w-4xl mx-auto px-6">
     
     <!-- Hero del bloque -->
     <section class="py-12 text-center">
@@ -13,135 +12,358 @@ import { bloque1Content } from '../content/course'
       <h1 class="text-4xl md:text-5xl font-bold mb-4">
         🏗️ La Torre de Control
       </h1>
-      <p class="text-xl text-ink-light">
-        Tags, Triggers y Variables: los tres pilares de GTM
+      <p class="text-xl text-ink-light max-w-2xl mx-auto">
+        Tags, Triggers y Variables: los tres pilares que controlan todo en GTM.
       </p>
     </section>
 
-    <!-- Introducción narrativa -->
-    <section class="py-8">
-      <div class="narrator-box">
-        <div class="narrator-icon">🧙</div>
-        <div>
-          <p class="font-semibold mb-2">El Guía dice:</p>
-          <p class="text-ink-light">
-            "Antes de construir una torre, necesitas entender los ladrillos. 
-            En GTM, hay exactamente tres tipos de ladrillos. Domínalos y podrás 
-            construir cualquier estructura de medición."
+    <!-- ¿Por qué nace GTM? -->
+    <section class="py-12 border-t border-cream-dark">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2">¿Por qué nace GTM?</h2>
+        <span class="pill">La historia real</span>
+      </div>
+
+      <p class="text-lg text-center text-ink-light max-w-3xl mx-auto mb-8">
+        <strong>2012:</strong> Google se da cuenta de que todos sufren el mismo problema. Cada marketer que quiere medir algo espera a desarrollo. Cada dev está harto. Los datos llegan tarde. <strong>GTM nace para romper ese cuello de botella.</strong>
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <article class="card">
+          <h3 class="text-xl font-bold mb-2">🧰 Qué es GTM</h3>
+          <p class="text-ink-light mb-4">Un Tag Management System: una capa donde orquestas qué etiquetas se ejecutan, cuándo y cómo.</p>
+          <p class="text-sm text-ink-light border-t-2 border-primary pt-3">
+            <strong>En otras palabras:</strong> Es como una "caja de controles" que marketing puede tocar sin tocar código.
           </p>
+        </article>
+        <article class="card">
+          <h3 class="text-xl font-bold mb-2">🚀 Qué resuelve</h3>
+          <p class="text-ink-light mb-4">Centraliza scripts, da autonomía a marketing, reduce deploys riesgosos y alinea equipos.</p>
+          <p class="text-sm text-ink-light border-t-2 border-warning pt-3">
+            <strong>Resultado:</strong> De "esperar 1 semana" a "hacer cambios en 10 minutos".
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="text-xl font-bold mb-2">🎯 Cuándo lo necesitas</h3>
+          <p class="text-ink-light mb-4">Cuando tienes múltiples herramientas (GA4, Meta, LinkedIn, etc.) y necesitas cambios rápidos sin riesgo.</p>
+          <p class="text-sm text-ink-light border-t-2 border-success pt-3">
+            <strong>Realidad:</strong> En empresas con {'>'}10 tags, GTM es prácticamente obligatorio.
+          </p>
+        </article>
+      </div>
+
+      <p class="text-center font-semibold text-lg mb-6">🎯 ¿Qué duele antes de GTM?</p>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <div class="card bg-danger/5 border-l-4 border-danger">
+          <h4 class="font-bold text-danger mb-3">😤 Para Marketing</h4>
+          <ul class="text-sm text-ink-light space-y-1 list-disc list-inside">
+            <li>Esperar 7-14 días por cada cambio</li>
+            <li>No poder iterar rápido en campañas</li>
+            <li>Depender de dev para TODO</li>
+            <li>Cambios se bloquean por otros sprints</li>
+          </ul>
         </div>
-      </div>
-    </section>
-
-    <!-- Los 3 pilares -->
-    <section class="py-12">
-      <h2 class="text-2xl font-bold mb-8">Los tres pilares</h2>
-      
-      <div class="space-y-6">
-        {bloque1Content.pilares.map((pilar, index) => (
-          <div class="card">
-            <div class="flex items-start gap-4">
-              <span class="text-4xl">{pilar.icono}</span>
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold mb-2">{pilar.nombre}</h3>
-                <p class="text-ink-light mb-4">{pilar.definicion}</p>
-                
-                <div class="bg-cream-dark rounded-lg p-4 mb-4">
-                  <p class="text-sm">
-                    <span class="font-medium">Analogía:</span> {pilar.analogia}
-                  </p>
-                </div>
-
-                <div>
-                  <p class="text-xs font-medium text-ink-light uppercase tracking-wide mb-2">
-                    Ejemplos comunes:
-                  </p>
-                  <div class="flex flex-wrap gap-2">
-                    {pilar.ejemplos.map((ejemplo) => (
-                      <span class="pill text-xs">{ejemplo}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Cómo se relacionan -->
-    <section class="py-12">
-      <h2 class="text-2xl font-bold mb-6">Cómo se relacionan</h2>
-      
-      <div class="card bg-gray-900 text-white">
-        <pre class="text-sm overflow-x-auto"><code class="text-green-400">{`// El flujo de GTM simplificado:
-
-VARIABLE    →  contiene datos (ej: página actual)
-     ↓
-TRIGGER     →  evalúa condición (ej: ¿es página /checkout?)
-     ↓
-TAG         →  se ejecuta (ej: enviar evento a GA4)
-
-// En código conceptual:
-if (trigger.condition === true) {
-  tag.execute(variable.value)
-}`}</code></pre>
-      </div>
-    </section>
-
-    <!-- Mini-juego -->
-    <section class="py-12">
-      <h2 class="text-2xl font-bold mb-6">🎮 Misión: Construye tu primera torre</h2>
-      <p class="text-ink-light mb-6">
-        Arrastra los bloques en el orden correcto para crear una estructura válida de GTM.
-      </p>
-      
-      <TowerBuilder client:visible />
-    </section>
-
-    <!-- Ecosistema -->
-    <section class="py-12">
-      <h2 class="text-2xl font-bold mb-8">GTM en el ecosistema</h2>
-      
-      <div class="grid md:grid-cols-3 gap-4">
-        {bloque1Content.ecosistema.map((item) => (
-          <div class="card text-center">
-            <span class="text-3xl mb-3 block">{item.icono}</span>
-            <h3 class="font-semibold mb-2">{item.titulo}</h3>
-            <p class="text-sm text-ink-light">{item.descripcion}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Resumen -->
-    <section class="py-12">
-      <div class="narrator-box">
-        <div class="narrator-icon">✅</div>
-        <div>
-          <p class="font-semibold mb-2">Lo que has aprendido:</p>
-          <ul class="space-y-2 text-ink-light">
-            <li>• <strong>Tags</strong> = los mensajeros que envían datos</li>
-            <li>• <strong>Triggers</strong> = las condiciones que los activan</li>
-            <li>• <strong>Variables</strong> = los contenedores de información</li>
-            <li>• El orden importa: Variable → Trigger → Tag</li>
+        <div class="card bg-success/5 border-l-4 border-success">
+          <h4 class="font-bold text-success mb-3">😤 Para Desarrollo</h4>
+          <ul class="text-sm text-ink-light space-y-1 list-disc list-inside">
+            <li>La cola de requests de marketing es infinita</li>
+            <li>Insertando tags = tiempo no productivo</li>
+            <li>Riesgo: cada deploy puede romper tracking</li>
+            <li>Code review para cambios que no añaden valor</li>
+          </ul>
+        </div>
+        <div class="card bg-secondary/10 border-l-4 border-secondary">
+          <h4 class="font-bold text-secondary mb-3">😤 Para Datos/Analytics</h4>
+          <ul class="text-sm text-ink-light space-y-1 list-disc list-inside">
+            <li>Implementaciones inconsistentes</li>
+            <li>Diferentes equipos hacen tags distinto</li>
+            <li>Auditoría = pesadilla (¿quién puso esto?)</li>
+            <li>Datos de mala calidad → decisiones malas</li>
           </ul>
         </div>
       </div>
+
+      <div class="card bg-gradient-to-br from-success/10 to-primary/5">
+        <h3 class="text-xl font-bold mb-4">📈 Mini timeline: Cómo GTM cambió el juego</h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="step-bullet">📅</span>
+            <p><strong>2012:</strong> Google lanza GTM. Nadie lo entiende aún.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="step-bullet">📅</span>
+            <p><strong>2013-2018:</strong> Adopción masiva en e-commerce y medios. Marketing empieza a respirar.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="step-bullet">📅</span>
+            <p><strong>2020+:</strong> GA4, server-side y consent mode. GTM deja de ser "herramienta" y se convierte en "arquitectura esencial".</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="step-bullet">🎯</span>
+            <p><strong>HOY:</strong> Sin GTM, no compites. Las empresas que no lo usan pierden meses en cada cambio.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- CTA -->
-    <section class="py-12 text-center">
-      <h2 class="text-2xl font-bold mb-4">¿Listo para hablar el idioma?</h2>
-      <p class="text-ink-light mb-8">
-        En el siguiente bloque aprenderás sobre eventos y el dataLayer: 
-        el lenguaje secreto de GTM.
-      </p>
-      <a href="/bloque-2" class="btn-primary text-lg px-8 py-4">
-        Continuar al Bloque 2 →
-      </a>
+    <!-- Los tres pilares -->
+    <section class="py-12 border-t border-cream-dark">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2">Los tres pilares de GTM</h2>
+        <span class="pill">Framework</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <article class="card">
+          <div class="text-4xl mb-4">🏷️</div>
+          <h3 class="text-xl font-bold mb-1">Tags</h3>
+          <p class="font-semibold text-primary mb-2">Mensajeros que envían tu data</p>
+          <p class="text-ink-light mb-4">Son scripts que se activan para enviar información a herramientas como GA4, Meta Pixel, LinkedIn, Mixpanel…</p>
+          <p class="text-sm text-ink-light border-l-4 border-primary pl-3">
+            <strong>¿Por qué importa?</strong> Sin tags, tu web no "habla" con tus herramientas. No sabes qué hace el usuario, no puedes hacer remarketing, no tienes datos para optimizar.
+          </p>
+        </article>
+        <article class="card">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-xl font-bold mb-1">Triggers</h3>
+          <p class="font-semibold text-warning mb-2">Sensores que disparan acciones</p>
+          <p class="text-ink-light mb-4">Son reglas que deciden cuándo activar un tag: cuando hacen click, cuando ven un video, cuando llena un formulario…</p>
+          <p class="text-sm text-ink-light border-l-4 border-warning pl-3">
+            <strong>¿Por qué importa?</strong> Si no tienes triggers precisos, envías datos incorrectos. Ejemplo: contar un click en un botón "cerrar" como una compra = métricas arruinadas.
+          </p>
+        </article>
+        <article class="card">
+          <div class="text-4xl mb-4">📦</div>
+          <h3 class="text-xl font-bold mb-1">Variables</h3>
+          <p class="font-semibold text-success mb-2">Contexto que añade detalle</p>
+          <p class="text-ink-light mb-4">Datos auxiliares que acompañan cada disparo: qué producto se compró, cuánto cuesta, quién es el usuario…</p>
+          <p class="text-sm text-ink-light border-l-4 border-success pl-3">
+            <strong>¿Por qué importa?</strong> Con variables, pasas de "alguien hizo algo" a "este cliente gastó €49 en la categoría X". Eso es lo que permite optimizar y vender.
+          </p>
+        </article>
+      </div>
+
+      <div class="card bg-gradient-to-br from-secondary/10 to-primary/5 mb-8">
+        <h3 class="text-xl font-bold mb-4">🎬 Analogía: Una película</h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="step-bullet">🎥</span>
+            <p><strong>Triggers</strong> = El director dice "¡ACCIÓN!" (detectan momentos clave)</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="step-bullet">📹</span>
+            <p><strong>Tags</strong> = Las cámaras que graban (envían datos a tus herramientas)</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="step-bullet">📝</span>
+            <p><strong>Variables</strong> = La información del guión (quién actúa, qué dice, cuándo)</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center font-semibold text-lg mb-6">🎯 Caso real: Cliente compra en tu tienda</p>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-secondary/10 p-4 rounded-xl text-center">
+          <p class="text-sm"><strong>🎯 TRIGGER:</strong> "Click en botón checkout"</p>
+        </div>
+        <div class="bg-warning/10 p-4 rounded-xl text-center">
+          <p class="text-sm"><strong>🏷️ TAG:</strong> Envía "purchase" a GA4</p>
+        </div>
+        <div class="bg-success/10 p-4 rounded-xl text-center">
+          <p class="text-sm"><strong>📦 VARIABLES:</strong> Incluye €89, "Laptop", user_id</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini-juego: Tower Builder -->
+    <section class="py-12 border-t border-cream-dark">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2">🎮 Tu turno: Construye la torre</h2>
+        <p class="text-ink-light">Arrastra y suelta para ordenar los pilares correctamente</p>
+      </div>
+      <TowerBuilder client:visible />
+    </section>
+
+    <!-- GTM en el ecosistema -->
+    <section class="py-12 border-t border-cream-dark">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2">GTM en el ecosistema digital</h2>
+        <span class="pill">Contexto</span>
+      </div>
+
+      <div class="card mb-8">
+        <p class="text-lg text-center">
+          GTM no vive solo. Es el <strong>centro de operaciones</strong> de tu estrategia de datos.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <article class="card text-center">
+          <div class="text-4xl mb-4">🌐</div>
+          <h3 class="text-xl font-bold mb-2">Web / App</h3>
+          <p class="text-ink-light">Donde ocurren las interacciones: clicks, scrolls, formularios, compras.</p>
+        </article>
+        <article class="card text-center border-2 border-primary">
+          <div class="text-4xl mb-4">🖥️</div>
+          <h3 class="text-xl font-bold mb-2">GTM</h3>
+          <p class="text-ink-light">Centraliza, controla y orquesta qué datos van a dónde.</p>
+        </article>
+        <article class="card text-center">
+          <div class="text-4xl mb-4">📊</div>
+          <h3 class="text-xl font-bold mb-2">Plataformas</h3>
+          <p class="text-ink-light">GA4, Meta, Google Ads, LinkedIn... reciben los datos que GTM traduce.</p>
+        </article>
+      </div>
+
+      <div class="card bg-gradient-to-br from-primary/10 to-secondary/5">
+        <h3 class="text-xl font-bold mb-4">🏭 Casos de uso por industria</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white/50 p-4 rounded-lg">
+            <h4 class="font-bold mb-2">🛒 E-commerce</h4>
+            <p class="text-sm text-ink-light">Tracking de productos, add_to_cart, purchase, remarketing dinámico, audiencias de valor.</p>
+          </div>
+          <div class="bg-white/50 p-4 rounded-lg">
+            <h4 class="font-bold mb-2">💼 SaaS B2B</h4>
+            <p class="text-sm text-ink-light">Lead forms, trials, feature usage, user journeys, product analytics.</p>
+          </div>
+          <div class="bg-white/50 p-4 rounded-lg">
+            <h4 class="font-bold mb-2">📰 Media / Content</h4>
+            <p class="text-sm text-ink-light">Scroll depth, video engagement, newsletter signups, content performance.</p>
+          </div>
+          <div class="bg-white/50 p-4 rounded-lg">
+            <h4 class="font-bold mb-2">🏥 Healthcare / Finance</h4>
+            <p class="text-sm text-ink-light">Consent-first tracking, server-side para compliance, datos anonimizados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Misión práctica -->
+    <section class="py-12 border-t border-cream-dark">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2">🎯 Misión: Tu primer evento</h2>
+        <span class="pill">Práctica guiada</span>
+      </div>
+
+      <div class="card bg-ink text-cream mb-8">
+        <h3 class="text-xl font-bold mb-4">Escenario</h3>
+        <p class="mb-4">Tu CEO quiere saber cuánta gente hace click en el botón "Solicitar demo" de la landing page.</p>
+        <p class="text-primary font-semibold">Tu misión: Configurar el tracking de ese click.</p>
+      </div>
+
+      <div class="space-y-4 mb-8">
+        <div class="card border-l-4 border-primary">
+          <div class="flex items-start gap-4">
+            <span class="step-bullet">1</span>
+            <div>
+              <h4 class="font-bold">Identifica el TRIGGER</h4>
+              <p class="text-ink-light">¿Qué evento debe disparar el tracking? → <strong>Click en elemento</strong></p>
+              <p class="text-sm text-ink-light mt-2">💡 Necesitas saber el selector CSS o ID del botón</p>
+            </div>
+          </div>
+        </div>
+        <div class="card border-l-4 border-warning">
+          <div class="flex items-start gap-4">
+            <span class="step-bullet">2</span>
+            <div>
+              <h4 class="font-bold">Configura el TAG</h4>
+              <p class="text-ink-light">¿A dónde enviamos el dato? → <strong>GA4 Event</strong></p>
+              <p class="text-sm text-ink-light mt-2">💡 Event name: "click_demo_button"</p>
+            </div>
+          </div>
+        </div>
+        <div class="card border-l-4 border-success">
+          <div class="flex items-start gap-4">
+            <span class="step-bullet">3</span>
+            <div>
+              <h4 class="font-bold">Añade VARIABLES</h4>
+              <p class="text-ink-light">¿Qué contexto extra enviamos? → <strong>Click Text, Page URL</strong></p>
+              <p class="text-sm text-ink-light mt-2">💡 Así sabes qué texto tenía el botón y en qué página estaba</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-success/10 border-2 border-success">
+        <h4 class="font-bold text-success mb-2">✅ Resultado esperado</h4>
+        <p class="text-ink-light">Cada vez que alguien hace click en "Solicitar demo", GA4 recibe un evento <code class="bg-ink/10 px-2 py-1 rounded">click_demo_button</code> con el texto del botón y la URL de la página.</p>
+      </div>
+    </section>
+
+    <!-- Dominar GTM = Superpoder -->
+    <section class="py-12 border-t border-cream-dark">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2">Dominar GTM = Superpoder</h2>
+        <span class="pill">Perspectiva</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="card">
+          <h3 class="text-xl font-bold mb-4">💰 Impacto financiero</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <span class="text-success">✓</span>
+              <span><strong>E-commerce:</strong> +25% conversión por mejor tracking de abandono</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-success">✓</span>
+              <span><strong>SaaS:</strong> -40% en CPL por audiencias bien segmentadas</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-success">✓</span>
+              <span><strong>Lead gen:</strong> +60% en calidad de leads atribuidos</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="text-xl font-bold mb-4">⏰ Impacto operativo</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <span class="text-success">✓</span>
+              <span><strong>Velocidad:</strong> De 2 semanas a 10 minutos por cambio</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-success">✓</span>
+              <span><strong>Autonomía:</strong> Marketing no bloquea desarrollo</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-success">✓</span>
+              <span><strong>Calidad:</strong> Menos errores, más consistencia</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="narrator-box">
+        <span class="narrator-icon">🎓</span>
+        <div>
+          <p class="font-bold mb-2">"GTM es el nuevo inglés del marketing digital."</p>
+          <p class="text-ink-light">No necesitas ser developer. Necesitas entender cómo fluyen los datos. Y ahora, ya lo entiendes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumen y cierre -->
+    <section class="py-12 border-t border-cream-dark text-center">
+      <div class="text-6xl mb-4">🏆</div>
+      <h2 class="text-3xl font-bold mb-4">Bloque 1 Completado</h2>
+      
+      <div class="card max-w-2xl mx-auto mb-8">
+        <h3 class="font-bold mb-4">📚 Lo que has aprendido:</h3>
+        <ul class="text-left space-y-2 text-ink-light">
+          <li>✅ Por qué existe GTM y qué problema resuelve</li>
+          <li>✅ Los tres pilares: Tags, Triggers y Variables</li>
+          <li>✅ Cómo encaja GTM en el ecosistema digital</li>
+          <li>✅ Tu primera misión de tracking práctica</li>
+          <li>✅ El impacto real de dominar esta herramienta</li>
+        </ul>
+      </div>
+
+      <p class="text-xl text-ink-light mb-2">Has construido los cimientos.</p>
+      <p class="text-xl font-bold text-primary">Ahora vamos a darle voz a esa torre.</p>
     </section>
 
   </div>
 </BloqueLayout>
-
