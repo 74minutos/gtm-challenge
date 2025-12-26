@@ -1,30 +1,296 @@
 ---
-import BloqueLayout from '../layouts/BloqueLayout.astro'
-import { bloques } from '../content/course'
-
-const bloqueId = Astro.url.pathname.replace('/', '')
-const bloque = bloques.find(b => b.id === bloqueId)
+import BloqueLayout from '../layouts/BloqueLayout.astro';
 ---
 
-<BloqueLayout bloqueId={bloqueId} title={bloque?.titulo || 'Bloque'}>
-  <div class="max-w-3xl mx-auto px-6">
-    <section class="py-12 text-center">
-      <span class="pill mb-4">{bloque?.numero === 0 ? 'Intro' : `Bloque ${bloque?.numero}`} · {bloque?.duracion}</span>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        {bloque?.icono} {bloque?.titulo}
-      </h1>
-      <p class="text-xl text-ink-light">{bloque?.subtitulo}</p>
-    </section>
+<BloqueLayout 
+  title="Bloque 6: Server-side GTM" 
+  bloque={6}
+  prevLink="/bloque-5"
+  nextLink="/"
+>
+  <!-- Welcome -->
+  <section class="py-12 text-center">
+    <div class="text-6xl mb-4">🔒</div>
+    <h1 class="text-4xl font-bold mb-4">Server-side GTM</h1>
+    <span class="inline-block px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm mb-8">
+      ⏱️ Bloque 6 · ~45 min
+    </span>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto text-left mb-8">
+      <p class="text-xl mb-4"><strong>El futuro del tracking ya está aquí.</strong></p>
+      <p class="text-slate-300 mb-4">Con la muerte de las cookies, los ad-blockers y las restricciones de privacidad, el tracking client-side cada vez funciona peor.</p>
+      <p class="text-emerald-400 font-bold">Server-side GTM es la respuesta: más control, mejor atribución, más privacidad.</p>
+    </div>
 
-    <section class="py-12">
-      <div class="card text-center">
-        <p class="text-6xl mb-4">🚧</p>
-        <h2 class="text-2xl font-bold mb-4">Contenido en construcción</h2>
-        <p class="text-ink-light mb-6">{bloque?.descripcion}</p>
-        <p class="text-sm text-ink-light/60">
-          Este bloque se migrará próximamente del proyecto original.
-        </p>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-red-500">
+        <h3 class="text-xl font-bold mb-3">❌ El Problema</h3>
+        <p class="text-slate-300 text-sm mb-2">Ad-blockers, Safari ITP, iOS 14.5+ bloquean el tracking tradicional.</p>
+        <p class="text-slate-500 text-xs">Pierdes hasta 40% de conversiones.</p>
       </div>
-    </section>
-  </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-green-500">
+        <h3 class="text-xl font-bold mb-3">✅ La Solución</h3>
+        <p class="text-slate-300 text-sm mb-2">Server-side envía datos desde TU servidor, no del navegador del usuario.</p>
+        <p class="text-slate-500 text-xs">Recuperas conversiones perdidas.</p>
+      </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-blue-500">
+        <h3 class="text-xl font-bold mb-3">🎯 El Resultado</h3>
+        <p class="text-slate-300 text-sm mb-2">Mejor Event Match Quality, mejores audiencias, mejor ROAS.</p>
+        <p class="text-slate-500 text-xs">Tus campañas optimizan mejor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-side vs Server-side -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🏗️ Arquitectura: Client vs Server</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4"><strong>Antes:</strong> Todo pasaba en el navegador. Scripts cargaban, cookies se escribían, datos se enviaban desde el cliente.</p>
+      <p class="text-lg"><strong>Ahora:</strong> El navegador solo envía datos a TU servidor, y TU servidor se comunica con las plataformas (Meta, Google, etc.).</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <!-- Client-side -->
+      <div class="bg-red-500/10 border-2 border-red-500 p-6 rounded-xl">
+        <h3 class="text-red-400 font-bold mb-4">❌ Client-side (Tradicional)</h3>
+        <pre class="bg-black p-4 rounded-lg text-white text-sm overflow-x-auto mb-4">
+Usuario → Navegador → [Scripts] 
+                    ↓
+              Facebook Pixel
+              Google Analytics
+              TikTok Pixel
+              ...etc</pre>
+        
+        <h4 class="font-bold mb-2">Problemas:</h4>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li>🚫 Ad-blockers bloquean scripts</li>
+          <li>🚫 Safari ITP limita cookies a 7 días</li>
+          <li>🚫 iOS pide permiso (50% dice no)</li>
+          <li>🚫 Performance: muchos scripts = web lenta</li>
+          <li>🚫 Seguridad: todo visible en el navegador</li>
+        </ul>
+      </div>
+
+      <!-- Server-side -->
+      <div class="bg-green-500/10 border-2 border-green-500 p-6 rounded-xl">
+        <h3 class="text-green-400 font-bold mb-4">✅ Server-side (Moderno)</h3>
+        <pre class="bg-black p-4 rounded-lg text-green-400 text-sm overflow-x-auto mb-4">
+Usuario → Navegador → [1 Script]
+                    ↓
+              TU SERVIDOR (GTM SS)
+                    ↓
+              Facebook CAPI
+              GA4 MP
+              TikTok Events API
+              ...etc</pre>
+        
+        <h4 class="font-bold mb-2">Ventajas:</h4>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li>✅ Ad-blockers no bloquean tu servidor</li>
+          <li>✅ Cookies first-party (sin límite ITP)</li>
+          <li>✅ Performance: solo 1 script en cliente</li>
+          <li>✅ Seguridad: API keys ocultas en servidor</li>
+          <li>✅ Control total de los datos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GTM Server Container -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🖥️ GTM Server Container</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4"><strong>Un GTM Server Container es un GTM que corre en un servidor en la nube.</strong></p>
+      <p class="text-slate-300">Recibe datos desde el cliente (web/app), los procesa, y los envía a las plataformas destino.</p>
+    </div>
+
+    <div class="bg-blue-500/10 border-2 border-blue-500 p-6 rounded-xl max-w-4xl mx-auto mb-8">
+      <h3 class="text-blue-400 font-bold mb-6">🏗️ Componentes del Server Container:</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm">1</span>
+          <div>
+            <h4 class="font-bold">Clients (Clientes)</h4>
+            <p class="text-slate-300 text-sm">Reciben datos entrantes. Ej: GA4 Client, Facebook Client, Custom Client.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm">2</span>
+          <div>
+            <h4 class="font-bold">Tags (Etiquetas)</h4>
+            <p class="text-slate-300 text-sm">Envían datos a destinos. Ej: Meta CAPI Tag, GA4 Tag, HTTP Request Tag.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm">3</span>
+          <div>
+            <h4 class="font-bold">Triggers y Variables</h4>
+            <p class="text-slate-300 text-sm">Igual que en GTM Web, pero con datos del evento recibido.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm">4</span>
+          <div>
+            <h4 class="font-bold">Hosting</h4>
+            <p class="text-slate-300 text-sm">
+              <a href="https://cloud.google.com/run" target="_blank" class="text-blue-400 hover:underline">Google Cloud Run</a>, 
+              AWS, o servicios como 
+              <a href="https://stape.io" target="_blank" class="text-blue-400 hover:underline">Stape.io</a> / 
+              <a href="https://addingwell.com" target="_blank" class="text-blue-400 hover:underline">Addingwell</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="bg-slate-800/50 p-6 rounded-xl text-center">
+        <h4 class="font-bold mb-2">Google Cloud Run</h4>
+        <p class="text-slate-400 text-sm">Oficial de Google. ~$50-200/mes para tráfico medio.</p>
+      </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl text-center">
+        <h4 class="font-bold mb-2">Stape.io</h4>
+        <p class="text-slate-400 text-sm">Managed service. Desde $20/mes. Más fácil.</p>
+      </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl text-center">
+        <h4 class="font-bold mb-2">Addingwell</h4>
+        <p class="text-slate-400 text-sm">Europeo, GDPR-friendly. Desde €30/mes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meta CAPI -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">📘 Caso Real: Meta CAPI</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4"><strong>Meta Conversions API (CAPI)</strong> es la forma de enviar eventos a Facebook/Instagram desde tu servidor.</p>
+      <p class="text-slate-300">Es el ejemplo perfecto de por qué server-side importa para marketing.</p>
+    </div>
+
+    <div class="bg-[#1877f2]/10 border-2 border-[#1877f2] p-6 rounded-xl max-w-4xl mx-auto mb-8">
+      <h3 class="text-[#1877f2] font-bold mb-4">🎯 Por qué Meta recomienda CAPI:</h3>
+      
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="bg-slate-800/50 p-4 rounded-lg text-center">
+          <span class="text-2xl">📈</span>
+          <h4 class="font-bold mt-2">Mejor Atribución</h4>
+          <p class="text-sm text-slate-300">Los eventos llegan aunque el usuario tenga ad-blocker.</p>
+        </div>
+        <div class="bg-slate-800/50 p-4 rounded-lg text-center">
+          <span class="text-2xl">🎯</span>
+          <h4 class="font-bold mt-2">Mejor EMQ</h4>
+          <p class="text-sm text-slate-300">Puedes enviar email hasheado, teléfono, user_id.</p>
+        </div>
+        <div class="bg-slate-800/50 p-4 rounded-lg text-center">
+          <span class="text-2xl">💰</span>
+          <h4 class="font-bold mt-2">Mejor ROAS</h4>
+          <p class="text-sm text-slate-300">Más conversiones = mejor optimización de ads.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto">
+      <h4 class="font-bold text-amber-400 mb-3">⚠️ Puntos clave a recordar:</h4>
+      <ul class="space-y-2 text-slate-300">
+        <li><strong>Híbrido es mejor:</strong> Pixel + CAPI juntos (redundancia)</li>
+        <li><strong>Deduplicar siempre:</strong> event_id idéntico en ambos</li>
+        <li><strong>EMQ > 6.0:</strong> Enviar datos de usuario (hasheados) mejora matching</li>
+        <li><strong>Test Events:</strong> Usar la función de test en Meta antes de producción</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Consent Mode -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🛡️ Consent Mode y Privacidad</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4"><strong>Server-side no significa "saltarse la privacidad".</strong></p>
+      <p class="text-slate-300">Al contrario: te da más control para cumplir GDPR/CCPA correctamente.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+      <div class="bg-purple-500/10 border-2 border-purple-500 p-6 rounded-xl">
+        <h3 class="text-purple-400 font-bold mb-4">🍪 Google Consent Mode v2</h3>
+        <p class="text-slate-400 text-sm mb-4">Obligatorio en UE desde marzo 2024.</p>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li><code class="bg-slate-700 px-1 rounded">ad_storage</code> - Cookies de ads</li>
+          <li><code class="bg-slate-700 px-1 rounded">analytics_storage</code> - Cookies analytics</li>
+          <li><code class="bg-slate-700 px-1 rounded">ad_user_data</code> - Datos de usuario para ads</li>
+          <li><code class="bg-slate-700 px-1 rounded">ad_personalization</code> - Personalización de ads</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-500/10 border-2 border-blue-500 p-6 rounded-xl">
+        <h3 class="text-blue-400 font-bold mb-4">🔒 Server-side + Consent</h3>
+        <p class="text-slate-400 text-sm mb-4">El server puede:</p>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li>✅ Verificar consent antes de enviar</li>
+          <li>✅ Filtrar datos sensibles</li>
+          <li>✅ Hashear PII automáticamente</li>
+          <li>✅ Logging de cumplimiento</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-emerald-500/10 border-l-4 border-emerald-500 p-6 rounded-r-xl max-w-3xl mx-auto">
+      <h4 class="font-bold mb-3">💡 En resumen:</h4>
+      <p class="text-slate-300">Server-side GTM te permite ser <strong class="text-emerald-400">más preciso Y más respetuoso</strong> con la privacidad. No es una forma de evadir consentimiento, es una forma de gestionarlo mejor.</p>
+    </div>
+  </section>
+
+  <!-- Final del curso -->
+  <section class="py-12 border-t border-slate-700 text-center">
+    <div class="text-6xl mb-6">🎓</div>
+    <h2 class="text-3xl font-bold mb-6">¡Aventura Completada!</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-8 max-w-3xl mx-auto mb-8">
+      <p class="text-xl mb-2">Has recorrido todo el camino.</p>
+      <p class="text-xl mb-2">Desde "¿qué es GTM?" hasta Server-side y privacidad.</p>
+      <p class="text-xl font-bold text-emerald-400 mb-6">Ya no eres un marketer que "usa herramientas". Eres un estratega de datos.</p>
+      
+      <h3 class="font-bold mb-6">📚 Tu viaje completo:</h3>
+      <div class="grid grid-cols-3 md:grid-cols-7 gap-4 text-center">
+        <div>
+          <span class="text-2xl">🎯</span>
+          <p class="text-xs mt-1"><strong>Sección 0</strong><br>¿Qué es GTM?</p>
+        </div>
+        <div>
+          <span class="text-2xl">🏗️</span>
+          <p class="text-xs mt-1"><strong>Bloque 1</strong><br>La Torre</p>
+        </div>
+        <div>
+          <span class="text-2xl">🗣️</span>
+          <p class="text-xs mt-1"><strong>Bloque 2</strong><br>Eventos</p>
+        </div>
+        <div>
+          <span class="text-2xl">👁️</span>
+          <p class="text-xs mt-1"><strong>Bloque 3</strong><br>Validación</p>
+        </div>
+        <div>
+          <span class="text-2xl">🏗️</span>
+          <p class="text-xs mt-1"><strong>Bloque 4</strong><br>Funnels</p>
+        </div>
+        <div>
+          <span class="text-2xl">🎧</span>
+          <p class="text-xs mt-1"><strong>Bloque 5</strong><br>Escuchar</p>
+        </div>
+        <div>
+          <span class="text-2xl">🔒</span>
+          <p class="text-xs mt-1"><strong>Bloque 6</strong><br>Server-side</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="/" class="inline-block px-8 py-4 bg-emerald-500 text-white font-bold rounded-lg hover:bg-emerald-600 transition-colors">
+      🏠 Volver al inicio
+    </a>
+  </section>
 </BloqueLayout>

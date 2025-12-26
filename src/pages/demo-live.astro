@@ -1,30 +1,305 @@
 ---
-import BloqueLayout from '../layouts/BloqueLayout.astro'
-import { bloques } from '../content/course'
-
-const bloqueId = Astro.url.pathname.replace('/', '')
-const bloque = bloques.find(b => b.id === bloqueId)
+import BloqueLayout from '../layouts/BloqueLayout.astro';
 ---
 
-<BloqueLayout bloqueId={bloqueId} title={bloque?.titulo || 'Bloque'}>
-  <div class="max-w-3xl mx-auto px-6">
-    <section class="py-12 text-center">
-      <span class="pill mb-4">{bloque?.numero === 0 ? 'Intro' : `Bloque ${bloque?.numero}`} · {bloque?.duracion}</span>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        {bloque?.icono} {bloque?.titulo}
-      </h1>
-      <p class="text-xl text-ink-light">{bloque?.subtitulo}</p>
-    </section>
+<BloqueLayout 
+  title="Demo Live: GTM en Acción" 
+  bloque={0}
+  prevLink="/bloque-3"
+  nextLink="/bloque-4"
+>
+  <!-- Welcome -->
+  <section class="py-12 text-center">
+    <div class="text-6xl mb-4">🎬</div>
+    <h1 class="text-4xl font-bold mb-4">Demo Live: GTM en Acción</h1>
+    <span class="inline-block px-4 py-2 bg-pink-500/20 text-pink-300 rounded-full text-sm mb-8">
+      👨‍🏫 Sección guiada por el profesor
+    </span>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto text-left mb-8">
+      <p class="text-xl mb-4"><strong>Ahora toca ver GTM en acción real.</strong></p>
+      <p class="text-slate-300">El profesor te guiará por las 3 implementaciones más comunes en marketing digital.</p>
+    </div>
 
-    <section class="py-12">
-      <div class="card text-center">
-        <p class="text-6xl mb-4">🚧</p>
-        <h2 class="text-2xl font-bold mb-4">Contenido en construcción</h2>
-        <p class="text-ink-light mb-6">{bloque?.descripcion}</p>
-        <p class="text-sm text-ink-light/60">
-          Este bloque se migrará próximamente del proyecto original.
-        </p>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-[#1877f2]">
+        <h3 class="text-xl font-bold mb-3">📘 Meta Pixel (Facebook)</h3>
+        <p class="text-slate-300 text-sm mb-2">PageView, ViewContent, AddToCart, Purchase, Lead y sus variantes.</p>
+        <p class="text-slate-500 text-xs">El pixel más usado en paid social.</p>
       </div>
-    </section>
-  </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-orange-500">
+        <h3 class="text-xl font-bold mb-3">📊 GA4: Lead & E-commerce</h3>
+        <p class="text-slate-300 text-sm mb-2">Eventos estándar para captación de leads y tiendas online.</p>
+        <p class="text-slate-500 text-xs">La base de toda medición moderna.</p>
+      </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-green-500">
+        <h3 class="text-xl font-bold mb-3">🔒 Meta CAPI (Server-side)</h3>
+        <p class="text-slate-300 text-sm mb-2">Envío server-to-server para mejor atribución y privacidad.</p>
+        <p class="text-slate-500 text-xs">El futuro del tracking post-cookies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo 1: Meta Pixel -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-2">📘 Demo 1: Meta Pixel (Facebook)</h2>
+    <p class="text-center text-slate-400 mb-8">👨‍🏫 El profesor muestra en GTM real</p>
+
+    <div class="bg-blue-500/10 border-l-4 border-blue-500 p-6 rounded-r-xl max-w-3xl mx-auto mb-8">
+      <h4 class="font-bold mb-3">💡 ¿Por qué Meta Pixel?</h4>
+      <p class="text-slate-300">Es el tag más común en marketing. Si no lo configuras bien, tus campañas de Facebook/Instagram no optimizan correctamente y pierdes dinero en ads.</p>
+    </div>
+
+    <div class="bg-[#1877f2]/10 border-2 border-[#1877f2] p-6 rounded-xl max-w-4xl mx-auto mb-8">
+      <h3 class="text-[#1877f2] font-bold mb-6">🎯 Lo que el profesor mostrará:</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-[#1877f2] rounded-full flex items-center justify-center font-bold shrink-0 text-sm">1</span>
+          <div>
+            <h4 class="font-bold">Crear el tag base de Meta Pixel</h4>
+            <p class="text-slate-300 text-sm">Configurar el Pixel ID y el tag PageView que dispara en todas las páginas.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-[#1877f2] rounded-full flex items-center justify-center font-bold shrink-0 text-sm">2</span>
+          <div>
+            <h4 class="font-bold">Eventos estándar de e-commerce</h4>
+            <p class="text-slate-300 text-sm"><code class="bg-slate-700 px-1 rounded">ViewContent</code>, <code class="bg-slate-700 px-1 rounded">AddToCart</code>, <code class="bg-slate-700 px-1 rounded">InitiateCheckout</code>, <code class="bg-slate-700 px-1 rounded">Purchase</code>.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-[#1877f2] rounded-full flex items-center justify-center font-bold shrink-0 text-sm">3</span>
+          <div>
+            <h4 class="font-bold">Eventos de lead generation</h4>
+            <p class="text-slate-300 text-sm"><code class="bg-slate-700 px-1 rounded">Lead</code>, <code class="bg-slate-700 px-1 rounded">CompleteRegistration</code>, <code class="bg-slate-700 px-1 rounded">Contact</code>.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-[#1877f2] rounded-full flex items-center justify-center font-bold shrink-0 text-sm">4</span>
+          <div>
+            <h4 class="font-bold">Parámetros dinámicos</h4>
+            <p class="text-slate-300 text-sm">Pasar <code class="bg-slate-700 px-1 rounded">value</code>, <code class="bg-slate-700 px-1 rounded">currency</code>, <code class="bg-slate-700 px-1 rounded">content_ids</code> desde el dataLayer.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-[#1877f2] rounded-full flex items-center justify-center font-bold shrink-0 text-sm">5</span>
+          <div>
+            <h4 class="font-bold">Verificar con Facebook Pixel Helper</h4>
+            <p class="text-slate-300 text-sm">Usar la extensión de Chrome para validar que todo funciona.</p>
+            <a href="https://chrome.google.com/webstore/detail/facebook-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc" target="_blank" class="text-blue-400 text-sm hover:underline">→ Instalar extensión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-red-500/10 border-l-4 border-red-500 p-6 rounded-r-xl max-w-3xl mx-auto">
+      <h4 class="font-bold text-pink-400 mb-3">⚠️ Errores comunes que verás en auditorías:</h4>
+      <ul class="space-y-2 text-slate-300">
+        <li>❌ Pixel duplicado (dispara 2 veces = datos inflados)</li>
+        <li>❌ Purchase sin <code class="bg-slate-700 px-1 rounded">value</code> (no puedes calcular ROAS)</li>
+        <li>❌ Eventos en página incorrecta (AddToCart en home)</li>
+        <li>❌ No usar <code class="bg-slate-700 px-1 rounded">content_ids</code> (remarketing dinámico no funciona)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Demo 2: GA4 -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-2">📊 Demo 2: GA4 para Lead Gen y E-commerce</h2>
+    <p class="text-center text-slate-400 mb-8">👨‍🏫 El profesor muestra en GTM real</p>
+
+    <div class="bg-orange-500/10 border-l-4 border-orange-500 p-6 rounded-r-xl max-w-3xl mx-auto mb-8">
+      <h4 class="font-bold mb-3">💡 ¿Por qué GA4?</h4>
+      <p class="text-slate-300">Es el estándar de medición de Google. Sin GA4 bien configurado, no tienes datos fiables para tomar decisiones ni para alimentar Google Ads.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+      <!-- Lead Generation -->
+      <div class="bg-green-500/10 border-2 border-green-500 p-6 rounded-xl">
+        <h3 class="text-green-400 font-bold mb-4">📞 Lead Generation</h3>
+        <p class="text-slate-400 text-sm mb-4">Para webs de servicios, B2B, inmobiliarias, etc.</p>
+        
+        <h4 class="font-bold mb-2 text-sm">Eventos clave:</h4>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li><code class="bg-slate-700 px-1 rounded">generate_lead</code> - Formulario enviado</li>
+          <li><code class="bg-slate-700 px-1 rounded">sign_up</code> - Registro completado</li>
+          <li><code class="bg-slate-700 px-1 rounded">contact</code> - Click en teléfono/email</li>
+          <li><code class="bg-slate-700 px-1 rounded">form_start</code> - Empezó a rellenar</li>
+          <li><code class="bg-slate-700 px-1 rounded">file_download</code> - Descargó PDF</li>
+        </ul>
+        
+        <h4 class="font-bold mb-2 text-sm">Parámetros importantes:</h4>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li><code class="bg-slate-700 px-1 rounded">form_id</code> - Identificar qué formulario</li>
+          <li><code class="bg-slate-700 px-1 rounded">form_name</code> - Nombre legible</li>
+          <li><code class="bg-slate-700 px-1 rounded">value</code> - Valor estimado del lead</li>
+        </ul>
+      </div>
+
+      <!-- E-commerce -->
+      <div class="bg-orange-500/10 border-2 border-orange-500 p-6 rounded-xl">
+        <h3 class="text-orange-400 font-bold mb-4">🛒 E-commerce</h3>
+        <p class="text-slate-400 text-sm mb-4">Para tiendas online, marketplaces, etc.</p>
+        
+        <h4 class="font-bold mb-2 text-sm">Eventos del funnel:</h4>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li><code class="bg-slate-700 px-1 rounded">view_item</code> - Vio un producto</li>
+          <li><code class="bg-slate-700 px-1 rounded">add_to_cart</code> - Añadió al carrito</li>
+          <li><code class="bg-slate-700 px-1 rounded">begin_checkout</code> - Inició checkout</li>
+          <li><code class="bg-slate-700 px-1 rounded">add_payment_info</code> - Añadió pago</li>
+          <li><code class="bg-slate-700 px-1 rounded">purchase</code> - Compra completada</li>
+        </ul>
+        
+        <h4 class="font-bold mb-2 text-sm">Parámetros obligatorios:</h4>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li><code class="bg-slate-700 px-1 rounded">items[]</code> - Array de productos</li>
+          <li><code class="bg-slate-700 px-1 rounded">value</code> - Valor total</li>
+          <li><code class="bg-slate-700 px-1 rounded">currency</code> - EUR, USD, etc.</li>
+          <li><code class="bg-slate-700 px-1 rounded">transaction_id</code> - ID único (solo purchase)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-blue-500/10 border-2 border-blue-500 p-6 rounded-xl max-w-3xl mx-auto">
+      <h3 class="text-blue-400 font-bold mb-4">🎯 Lo que el profesor mostrará:</h3>
+      <ol class="space-y-2 text-slate-300">
+        <li>1. Crear tag GA4 Configuration con el Measurement ID</li>
+        <li>2. Crear tag GA4 Event para <code class="bg-slate-700 px-1 rounded">generate_lead</code></li>
+        <li>3. Configurar el trigger (Form Submission)</li>
+        <li>4. Pasar parámetros desde variables del dataLayer</li>
+        <li>5. Verificar en <a href="https://support.google.com/analytics/answer/7201382" target="_blank" class="text-blue-400 hover:underline">GA4 DebugView</a> que el evento llega</li>
+        <li>6. Marcar el evento como conversión en GA4</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Demo 3: Meta CAPI -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-2">🔒 Demo 3: Meta CAPI (Server-side)</h2>
+    <p class="text-center text-slate-400 mb-8">👨‍🏫 El profesor muestra en GTM real</p>
+
+    <div class="bg-purple-500/10 border-l-4 border-purple-500 p-6 rounded-r-xl max-w-3xl mx-auto mb-8">
+      <h4 class="font-bold mb-3">🔮 ¿Por qué CAPI (Conversions API)?</h4>
+      <p class="text-slate-300 mb-4">Los navegadores bloquean cada vez más el tracking client-side (cookies, ad-blockers, ITP de Safari). CAPI envía datos directamente desde tu servidor a Meta, sin pasar por el navegador.</p>
+      <p class="text-emerald-400 font-bold">Resultado: Mejor atribución, más conversiones reportadas, mejor optimización de campañas.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+      <div class="bg-red-500/10 p-6 rounded-xl border-l-4 border-red-500">
+        <h4 class="font-bold text-red-400 mb-3">❌ Solo Pixel (Client-side)</h4>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li>• Ad-blockers lo bloquean (~30% usuarios)</li>
+          <li>• Safari ITP limita cookies a 7 días</li>
+          <li>• iOS 14.5+ pide permiso (50% dice no)</li>
+          <li>• Pierdes ~40% de las conversiones</li>
+        </ul>
+      </div>
+      <div class="bg-green-500/10 p-6 rounded-xl border-l-4 border-green-500">
+        <h4 class="font-bold text-green-400 mb-3">✅ Pixel + CAPI (Híbrido)</h4>
+        <ul class="text-sm text-slate-300 space-y-1">
+          <li>• Envío redundante (si uno falla, el otro llega)</li>
+          <li>• Meta deduplica automáticamente</li>
+          <li>• Recuperas conversiones perdidas</li>
+          <li>• Mejor Event Match Quality (EMQ)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-green-500/10 border-2 border-green-500 p-6 rounded-xl max-w-4xl mx-auto mb-8">
+      <h3 class="text-green-400 font-bold mb-6">🎯 Lo que el profesor mostrará:</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm text-black">1</span>
+          <div>
+            <h4 class="font-bold">Arquitectura: Cliente + Servidor</h4>
+            <p class="text-slate-300 text-sm">Web → GTM Client → GTM Server → Meta CAPI</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm text-black">2</span>
+          <div>
+            <h4 class="font-bold">Configurar GTM Server-side container</h4>
+            <p class="text-slate-300 text-sm">Crear contenedor en <a href="https://cloud.google.com/run" target="_blank" class="text-blue-400 hover:underline">Google Cloud</a> o <a href="https://stape.io" target="_blank" class="text-blue-400 hover:underline">Stape.io</a>.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm text-black">3</span>
+          <div>
+            <h4 class="font-bold">Enviar eventos desde GTM Web al Server</h4>
+            <p class="text-slate-300 text-sm">Usar GA4 como "transport" o el cliente de Meta.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm text-black">4</span>
+          <div>
+            <h4 class="font-bold">Configurar el tag de Meta CAPI en Server</h4>
+            <p class="text-slate-300 text-sm">Pixel ID, Access Token, mapear eventos y parámetros.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm text-black">5</span>
+          <div>
+            <h4 class="font-bold">Deduplicación con event_id</h4>
+            <p class="text-slate-300 text-sm">Mismo <code class="bg-slate-700 px-1 rounded">event_id</code> en Pixel y CAPI = Meta sabe que es el mismo evento.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4">
+          <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold shrink-0 text-sm text-black">6</span>
+          <div>
+            <h4 class="font-bold">Verificar en Meta Events Manager</h4>
+            <p class="text-slate-300 text-sm">Ver Event Match Quality, deduplicación y eventos recibidos.</p>
+            <a href="https://business.facebook.com/events_manager" target="_blank" class="text-blue-400 text-sm hover:underline">→ Abrir Events Manager</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto">
+      <h4 class="font-bold mb-4">📊 Métricas clave en Meta Events Manager:</h4>
+      <ul class="space-y-2 text-slate-300">
+        <li><strong>Event Match Quality (EMQ):</strong> Objetivo > 6.0 (de 10)</li>
+        <li><strong>Deduplication:</strong> Debe mostrar "Deduplicated" en eventos</li>
+        <li><strong>Browser vs Server:</strong> Ver ambos canales enviando</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Resumen -->
+  <section class="py-12 border-t border-slate-700 text-center">
+    <div class="text-6xl mb-6">🎬</div>
+    <h2 class="text-3xl font-bold mb-6">Demos Completadas</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-8 max-w-2xl mx-auto mb-8">
+      <p class="text-xl mb-6">Has visto las 3 implementaciones más importantes en marketing digital.</p>
+      
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div>
+          <span class="text-3xl">📘</span>
+          <p class="text-sm mt-2">Meta Pixel</p>
+        </div>
+        <div>
+          <span class="text-3xl">📊</span>
+          <p class="text-sm mt-2">GA4</p>
+        </div>
+        <div>
+          <span class="text-3xl">🔒</span>
+          <p class="text-sm mt-2">Meta CAPI</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-xl text-slate-300">Ahora toca aplicarlo.</p>
+    <p class="text-xl font-bold text-emerald-400">Siguiente: Arquitectura de Funnels</p>
+  </section>
 </BloqueLayout>

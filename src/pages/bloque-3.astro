@@ -1,30 +1,271 @@
 ---
-import BloqueLayout from '../layouts/BloqueLayout.astro'
-import { bloques } from '../content/course'
-
-const bloqueId = Astro.url.pathname.replace('/', '')
-const bloque = bloques.find(b => b.id === bloqueId)
+import BloqueLayout from '../layouts/BloqueLayout.astro';
 ---
 
-<BloqueLayout bloqueId={bloqueId} title={bloque?.titulo || 'Bloque'}>
-  <div class="max-w-3xl mx-auto px-6">
-    <section class="py-12 text-center">
-      <span class="pill mb-4">{bloque?.numero === 0 ? 'Intro' : `Bloque ${bloque?.numero}`} · {bloque?.duracion}</span>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        {bloque?.icono} {bloque?.titulo}
-      </h1>
-      <p class="text-xl text-ink-light">{bloque?.subtitulo}</p>
-    </section>
+<BloqueLayout 
+  title="Bloque 3: El ojo que todo lo ve" 
+  bloque={3}
+  prevLink="/bloque-2"
+  nextLink="/demo-live"
+>
+  <!-- Welcome -->
+  <section class="py-12 text-center">
+    <div class="text-6xl mb-4">👁️</div>
+    <h1 class="text-4xl font-bold mb-4">El ojo que todo lo ve</h1>
+    <span class="inline-block px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm mb-8">
+      ⏱️ Bloque 3 · ~25 min
+    </span>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto text-left mb-8">
+      <p class="text-xl mb-4"><strong>En este bloque vas a aprender a ver lo invisible.</strong></p>
+      <p class="text-slate-300 mb-4">Los eventos ya no son líneas de código: son pruebas de que tu medición funciona.</p>
+      <p class="text-slate-300">Descubrirás cómo validar lo que implementas, detectar errores antes de que cuesten dinero y convertirte en el "ojo que todo lo ve" dentro del equipo.</p>
+    </div>
 
-    <section class="py-12">
-      <div class="card text-center">
-        <p class="text-6xl mb-4">🚧</p>
-        <h2 class="text-2xl font-bold mb-4">Contenido en construcción</h2>
-        <p class="text-ink-light mb-6">{bloque?.descripcion}</p>
-        <p class="text-sm text-ink-light/60">
-          Este bloque se migrará próximamente del proyecto original.
-        </p>
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto">
+      <p class="text-lg"><strong>Has aprendido a hablar el idioma de GTM...</strong></p>
+      <p class="text-lg">Pero hablar no basta.</p>
+      <p class="text-lg text-amber-300">Si no puedes ver y comprobar lo que estás diciendo... los datos no existen.</p>
+    </div>
+  </section>
+
+  <!-- Por qué validar es clave -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">📚 Por qué validar es clave</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4">La verificación no es un paso técnico más.</p>
+      <p class="text-xl font-bold text-emerald-400">Es la frontera entre un dato útil y un espejismo costoso.</p>
+    </div>
+
+    <div class="bg-emerald-500/10 p-6 rounded-xl max-w-2xl mx-auto mb-8">
+      <h3 class="font-bold mb-4">📌 Razones para QA:</h3>
+      <ul class="space-y-2 text-slate-300">
+        <li>✅ Los errores en tracking no siempre dan error visible</li>
+        <li>✅ Una etiqueta rota puede inflar o romper métricas silenciosamente</li>
+        <li>✅ La validación permite prevenir problemas antes de escalar campañas</li>
+        <li>✅ QA = autonomía para no depender de "alguien de tech"</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-bold text-center mb-6">🚨 Casos reales: Lo que cuesta un tracking roto</h3>
+    
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="bg-red-500/10 p-6 rounded-xl border-l-4 border-red-500">
+        <h4 class="font-bold text-red-400 mb-3">💥 Tag GA4 rompe silenciosamente</h4>
+        <p class="text-sm text-slate-300 mb-2"><strong>Qué pasó:</strong> Dev cambió un DOM selector. La etiqueta deja de capturar clics de compra.</p>
+        <p class="text-xs text-slate-400"><strong>Sin QA:</strong> €50k en ad spend inútil.</p>
+        <p class="text-xs text-green-400"><strong>Con QA:</strong> Se detecta en 2 horas. Pérdida = €0.</p>
       </div>
-    </section>
-  </div>
+      <div class="bg-blue-500/10 p-6 rounded-xl border-l-4 border-blue-500">
+        <h4 class="font-bold text-blue-400 mb-3">💥 Eventos duplicados</h4>
+        <p class="text-sm text-slate-300 mb-2"><strong>Qué pasó:</strong> Dos devs implementaron el mismo evento sin saber.</p>
+        <p class="text-xs text-slate-400"><strong>Sin QA:</strong> Conversión 2x inflada. Marketing invierte en lo que NO funciona.</p>
+        <p class="text-xs text-green-400"><strong>Con QA:</strong> Una reunión de 15 min lo arregla.</p>
+      </div>
+      <div class="bg-green-500/10 p-6 rounded-xl border-l-4 border-green-500">
+        <h4 class="font-bold text-green-400 mb-3">✅ Validación previene desastres</h4>
+        <p class="text-sm text-slate-300 mb-2"><strong>Qué pasó:</strong> QA detecta que Meta Pixel no trackea compras en iOS 14+.</p>
+        <p class="text-xs text-slate-400"><strong>Acción:</strong> Arreglan antes de escalar budget. Evitan quemar €100k.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto mt-8 text-center">
+      <p class="text-lg font-bold">"Un marketer que no valida es como un piloto que no mira el radar."</p>
+    </div>
+  </section>
+
+  <!-- Herramientas esenciales de QA -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🛠️ Herramientas esenciales de QA</h2>
+    
+    <div class="space-y-6 max-w-3xl mx-auto">
+      <div class="bg-slate-800/50 p-6 rounded-xl">
+        <div class="flex items-start gap-4">
+          <span class="w-4 h-4 bg-yellow-500 rounded-full mt-2 shrink-0"></span>
+          <div>
+            <h4 class="font-bold text-lg">Preview Mode GTM</h4>
+            <p class="text-slate-300">Ver si el evento entra, qué triggers se activan y qué variables se leen.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-slate-800/50 p-6 rounded-xl">
+        <div class="flex items-start gap-4">
+          <span class="w-4 h-4 bg-blue-500 rounded-full mt-2 shrink-0"></span>
+          <div>
+            <h4 class="font-bold text-lg">Google Analytics 4 DebugView</h4>
+            <p class="text-slate-300">Confirmar si GA4 recibe el evento y con qué payload.</p>
+            <a href="https://support.google.com/analytics/answer/7201382" target="_blank" class="text-blue-400 text-sm hover:underline">→ Documentación oficial</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-slate-800/50 p-6 rounded-xl">
+        <div class="flex items-start gap-4">
+          <span class="w-4 h-4 bg-green-500 rounded-full mt-2 shrink-0"></span>
+          <div>
+            <h4 class="font-bold text-lg">Omnibug / Tag Assistant</h4>
+            <p class="text-slate-300">Analizar requests salientes, comprobar parámetros.</p>
+            <div class="flex gap-4 mt-2">
+              <a href="https://chromewebstore.google.com/detail/omnibug/bknpehncffejahipecakbfkomebjmokl" target="_blank" class="text-blue-400 text-sm hover:underline">→ Omnibug</a>
+              <a href="https://tagassistant.google.com/" target="_blank" class="text-blue-400 text-sm hover:underline">→ Tag Assistant</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-slate-800/50 p-6 rounded-xl">
+        <div class="flex items-start gap-4">
+          <span class="w-4 h-4 bg-orange-500 rounded-full mt-2 shrink-0"></span>
+          <div>
+            <h4 class="font-bold text-lg">Network tab (DevTools)</h4>
+            <p class="text-slate-300">Inspeccionar payloads de red directamente.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-slate-800/50 p-6 rounded-xl">
+        <div class="flex items-start gap-4">
+          <span class="w-4 h-4 bg-slate-400 rounded-full mt-2 shrink-0"></span>
+          <div>
+            <h4 class="font-bold text-lg">Entornos staging vs producción</h4>
+            <p class="text-slate-300">Validar antes de lanzar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Validación cruzada -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🔗 Validación cruzada</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg">Una validación sólida no depende de una sola herramienta.</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto mb-8">
+      <h3 class="font-bold mb-6 text-center">🔍 Lógica de QA robusta:</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-start gap-4 p-4 bg-slate-800/30 rounded-lg">
+          <span class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+          <div>
+            <h4 class="font-bold">Validar en GTM Preview</h4>
+            <p class="text-slate-300 text-sm">Que el evento entra y se activan triggers correctos</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4 p-4 bg-slate-800/30 rounded-lg">
+          <span class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+          <div>
+            <h4 class="font-bold">Validar en GA4 DebugView</h4>
+            <p class="text-slate-300 text-sm">Que el evento llega con los parámetros esperados</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4 p-4 bg-slate-800/30 rounded-lg">
+          <span class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+          <div>
+            <h4 class="font-bold">Validar en Network tab u Omnibug</h4>
+            <p class="text-slate-300 text-sm">El payload real enviado</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-4 p-4 bg-slate-800/30 rounded-lg">
+          <span class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center font-bold shrink-0">4</span>
+          <div>
+            <h4 class="font-bold">Validar en el reporting</h4>
+            <p class="text-slate-300 text-sm">Si aparece en los dashboards esperados (retrasado)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto">
+      <h3 class="font-bold mb-4">📊 Ejemplo real:</h3>
+      <ul class="space-y-2 text-slate-300">
+        <li>✅ Evento de compra → visto en Preview</li>
+        <li>❌ No llega a GA4 → error en nombre de parámetro</li>
+        <li>🔍 Se detecta en Network → parámetro mal escrito</li>
+        <li>✅ Corrección → validación final</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto mt-8 text-center">
+      <p class="text-lg font-bold">"Si aprendes a seguir el rastro, ningún error se esconde."</p>
+    </div>
+  </section>
+
+  <!-- Validar en diferentes entornos -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🌐 Validar en diferentes entornos</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4">No todo se valida igual en dev, staging y producción.</p>
+      <p class="text-amber-300 font-bold">Un funnel puede funcionar perfecto en staging y romperse en live.</p>
+    </div>
+
+    <div class="bg-emerald-500/10 p-6 rounded-xl max-w-2xl mx-auto mb-8">
+      <h3 class="font-bold mb-4">📋 Checklist de QA por entorno:</h3>
+      <ul class="space-y-2 text-slate-300">
+        <li>✅ Verificar snippet correcto y container ID</li>
+        <li>✅ Asegurar que cookies y consentimientos funcionan igual</li>
+        <li>✅ Revisar si hay bloqueadores (adblock, Safari ITP, etc.)</li>
+        <li>✅ Validar rutas de red y dominios correctos</li>
+      </ul>
+    </div>
+
+    <div class="bg-red-500/10 border-l-4 border-red-500 p-6 rounded-r-xl max-w-2xl mx-auto">
+      <h3 class="font-bold text-red-400 mb-4">⚠️ Casos frecuentes:</h3>
+      <ul class="space-y-2 text-slate-300">
+        <li>• Eventos que desaparecen en producción</li>
+        <li>• Cambios en DOM que rompen triggers</li>
+        <li>• Versiones antiguas de container activas</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- QA + Marketing -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">💼 QA + Marketing (Valor estratégico)</h2>
+    
+    <div class="bg-emerald-500/10 p-6 rounded-xl max-w-2xl mx-auto mb-8">
+      <h3 class="font-bold mb-4">💪 Superpoderes del marketer con QA:</h3>
+      <ul class="space-y-3 text-slate-300">
+        <li class="text-lg">✅ Saber si tus campañas miden bien desde el día 0</li>
+        <li class="text-lg">✅ Poder lanzar sin depender de desarrollo</li>
+        <li class="text-lg">✅ Entender los límites de las plataformas</li>
+        <li class="text-lg">✅ Detectar problemas antes de que cuesten dinero</li>
+      </ul>
+    </div>
+
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto text-center">
+      <p class="text-lg font-bold">"Medir no es solo lanzar.</p>
+      <p class="text-lg font-bold text-amber-300">Medir es confirmar que la historia que cuentan los datos... es real."</p>
+    </div>
+  </section>
+
+  <!-- Resumen Final -->
+  <section class="py-12 border-t border-slate-700 text-center">
+    <div class="text-6xl mb-6">👁️</div>
+    <h2 class="text-3xl font-bold mb-6">El ojo que todo lo ve</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-8 max-w-2xl mx-auto mb-8">
+      <p class="text-xl mb-6">🏆 <strong>¡Felicidades!</strong> Has completado el Bloque 3.</p>
+      
+      <h3 class="font-bold mb-4">📚 Lo que has aprendido:</h3>
+      <ul class="text-left space-y-2 text-slate-300">
+        <li>✅ A usar las herramientas de QA en profundidad</li>
+        <li>✅ A validar datos en múltiples capas y entornos</li>
+        <li>✅ A detectar eventos fantasmas y bugs reales</li>
+        <li>✅ A seguir el rastro de un dato desde GTM hasta reporting</li>
+        <li>✅ A ser autónomo en la validación sin depender de tech</li>
+      </ul>
+    </div>
+
+    <p class="text-xl text-slate-300">Ahora no solo hablas GTM...</p>
+    <p class="text-xl font-bold text-emerald-400 mb-8">Lo auditas como un pro.</p>
+  </section>
 </BloqueLayout>

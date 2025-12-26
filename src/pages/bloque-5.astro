@@ -1,30 +1,164 @@
 ---
-import BloqueLayout from '../layouts/BloqueLayout.astro'
-import { bloques } from '../content/course'
-
-const bloqueId = Astro.url.pathname.replace('/', '')
-const bloque = bloques.find(b => b.id === bloqueId)
+import BloqueLayout from '../layouts/BloqueLayout.astro';
 ---
 
-<BloqueLayout bloqueId={bloqueId} title={bloque?.titulo || 'Bloque'}>
-  <div class="max-w-3xl mx-auto px-6">
-    <section class="py-12 text-center">
-      <span class="pill mb-4">{bloque?.numero === 0 ? 'Intro' : `Bloque ${bloque?.numero}`} · {bloque?.duracion}</span>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        {bloque?.icono} {bloque?.titulo}
-      </h1>
-      <p class="text-xl text-ink-light">{bloque?.subtitulo}</p>
-    </section>
+<BloqueLayout 
+  title="Bloque 5: Escuchar al dato" 
+  bloque={5}
+  prevLink="/bloque-4"
+  nextLink="/bloque-6"
+>
+  <!-- Welcome -->
+  <section class="py-12 text-center">
+    <div class="text-6xl mb-4">🎧</div>
+    <h1 class="text-4xl font-bold mb-4">Escuchar al dato</h1>
+    <span class="inline-block px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm mb-8">
+      ⏱️ Bloque 5 · ~20 min
+    </span>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto text-left mb-8">
+      <p class="text-slate-300 mb-4">Una oficina digital al amanecer. Nuestro aprendiz de marketing abre la pantalla del ordenador.</p>
+      <p class="text-slate-300 mb-4">Detrás de él, un río invisible fluye sin descanso: cada clic, cada scroll, cada compra, cada abandono...</p>
+      <p class="text-xl font-bold">Miles de señales que hablan, aunque nadie las escuche.</p>
+    </div>
 
-    <section class="py-12">
-      <div class="card text-center">
-        <p class="text-6xl mb-4">🚧</p>
-        <h2 class="text-2xl font-bold mb-4">Contenido en construcción</h2>
-        <p class="text-ink-light mb-6">{bloque?.descripcion}</p>
-        <p class="text-sm text-ink-light/60">
-          Este bloque se migrará próximamente del proyecto original.
-        </p>
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-slate-300 mb-4">Durante semanas, has trabajado para que estas señales lleguen a ti.</p>
+      <p class="text-slate-300 mb-4">Has aprendido a colocar etiquetas, a activar triggers, a domar variables.</p>
+      <p class="text-slate-300 mb-4">Ahora, por fin, el sistema habla.</p>
+      <p class="text-2xl text-red-400 font-bold my-4">Pero hay un problema…</p>
+      <p class="italic text-slate-400">🎧 Silencio. Ruido blanco. Un zumbido confuso.</p>
+      <p class="text-xl font-bold mt-4">"El dato habla… pero no dice nada. No si no sabes escucharlo."</p>
+    </div>
+  </section>
+
+  <!-- Herramientas para escuchar -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🧭 Herramientas para "escuchar"</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto mb-8">
+      <p class="text-lg mb-4">Para poder escuchar, necesitas un instrumento.</p>
+      <p class="text-slate-300">Aquí entran en juego las herramientas analíticas:</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-emerald-500">
+        <h4 class="font-bold mb-3">📊 Google Analytics 4</h4>
+        <p class="text-slate-300 text-sm">La más común, perfecta para leer eventos básicos y entender flujos de usuario.</p>
       </div>
-    </section>
-  </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-blue-500">
+        <h4 class="font-bold mb-3">🧭 Looker Studio</h4>
+        <p class="text-slate-300 text-sm">La capa de visualización — donde los datos empiezan a hablar con voz clara.</p>
+      </div>
+      <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-purple-500">
+        <h4 class="font-bold mb-3">🧠 Mixpanel</h4>
+        <p class="text-slate-300 text-sm">Para análisis centrados en producto y comportamiento de usuario.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto mb-8">
+      <p class="text-lg">"Aquí no vamos a hacer ingeniería de datos. Vamos a aprender a <strong>leer</strong>."</p>
+      <p class="text-slate-300">"A identificar patrones. A saber si algo va bien o mal sin depender de un analista sénior."</p>
+    </div>
+
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto">
+      <p class="font-bold mb-3">💡 Ejemplo práctico:</p>
+      <p class="text-slate-300 mb-2">Un evento <code class="bg-slate-700 px-2 py-1 rounded">purchase</code> llega con 100 hits diarios, pero solo 20 inician <code class="bg-slate-700 px-2 py-1 rounded">begin_checkout</code>.</p>
+      <p class="text-red-400 font-bold mt-4">¿Qué está pasando?</p>
+      <p class="text-slate-400 italic mt-2">→ Este tipo de preguntas son las que empiezan a dar sentido al trabajo previo.</p>
+    </div>
+  </section>
+
+  <!-- Los funnels -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">🔍 Los funnels — ¿Dónde se pierden?</h2>
+    
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto mb-8">
+      <p class="text-lg">"Los funnels son como mapas de carreteras."</p>
+      <p class="text-lg">"Saber cuántos llegan al destino es fácil."</p>
+      <p class="text-xl font-bold text-amber-300">"Entender por qué los demás se pierden… ahí está la magia."</p>
+    </div>
+
+    <div class="bg-slate-800/50 rounded-xl p-6 max-w-3xl mx-auto">
+      <p class="text-slate-300 mb-4">Has reforzado conceptos clave:</p>
+      <ul class="space-y-2 text-slate-300">
+        <li>• Importancia de la coherencia en los triggers</li>
+        <li>• Cómo la calidad del dato afecta directamente a la lectura</li>
+        <li>• Detectar errores de implementación antes de que corrompan análisis</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- De datos a decisiones -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">💡 De datos a decisiones</h2>
+    
+    <div class="bg-emerald-500/10 p-6 rounded-xl max-w-3xl mx-auto mb-8">
+      <h3 class="font-bold mb-4">🎯 Ahora el siguiente nivel:</h3>
+      <p class="text-xl mb-4">Dejas de ser técnico y pasas a ser <strong class="text-emerald-400">estratega</strong>.</p>
+      <p class="text-slate-300">No basta con leer datos. Hay que conectarlos con <strong>acciones reales</strong>.</p>
+    </div>
+
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto">
+      <p class="text-lg">Un marketer que sabe leer datos es valioso.</p>
+      <p class="text-xl font-bold text-amber-300">Un marketer que sabe convertir datos en acciones es imprescindible.</p>
+    </div>
+  </section>
+
+  <!-- El dashboard como relato -->
+  <section class="py-12 border-t border-slate-700">
+    <h2 class="text-3xl font-bold text-center mb-8">📊 El dashboard como relato</h2>
+    
+    <div class="bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl max-w-3xl mx-auto mb-8">
+      <p class="text-lg">"Un dashboard no es una hoja de cálculo bonita."</p>
+      <p class="text-xl font-bold text-amber-300">"Es un guion que cuenta una historia."</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto mb-8">
+      <h3 class="font-bold mb-6 text-center">✅ Qué hace bueno a un dashboard:</h3>
+      
+      <div class="space-y-4">
+        <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-emerald-500">
+          <h4 class="font-bold mb-2">1️⃣ Tiene una pregunta clara que responde</h4>
+          <p class="text-slate-400 text-sm">No "muestra todos los datos", sino que responde a UNA pregunta específica del negocio.</p>
+        </div>
+        
+        <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-cyan-500">
+          <h4 class="font-bold mb-2">2️⃣ Usa pocas métricas, pero bien escogidas</h4>
+          <p class="text-slate-400 text-sm">Menos es más. 4-5 métricas clave dicen más que 50 números sin contexto.</p>
+        </div>
+        
+        <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-pink-500">
+          <h4 class="font-bold mb-2">3️⃣ Es entendible por alguien no técnico</h4>
+          <p class="text-slate-400 text-sm">Si tu CEO no lo entiende en 10 segundos, no funciona.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-red-500 text-white p-6 rounded-xl max-w-3xl mx-auto">
+      <h3 class="font-bold mb-3">⚔️ Boss Fight Final</h3>
+      <p class="mb-4">Es momento de demostrar que puedes crear un dashboard que cuente una historia clara.</p>
+      <p>El CEO te pregunta: <strong>"¿Qué campañas están funcionando?"</strong></p>
+      <p class="text-sm italic mt-2">Tu dashboard debe responder esa pregunta sin ambigüedades.</p>
+    </div>
+  </section>
+
+  <!-- Resumen Final -->
+  <section class="py-12 border-t border-slate-700 text-center">
+    <div class="text-6xl mb-6">🎧</div>
+    <h2 class="text-3xl font-bold mb-6">Bloque 5 Completado</h2>
+    
+    <div class="bg-slate-800/50 rounded-xl p-8 max-w-2xl mx-auto mb-8">
+      <p class="text-xl mb-2">Ya no oyes ruido blanco.</p>
+      <p class="text-xl font-bold text-emerald-400 mb-6">Oyes patrones. Oyes problemas y oportunidades. Oyes historias.</p>
+      
+      <h3 class="font-bold mb-4">📌 Lo que has aprendido:</h3>
+      <ul class="text-left space-y-2 text-slate-300">
+        <li>✅ GTM es solo el medio: <strong>el fin es entender</strong></li>
+        <li>✅ Un marketer que escucha al dato es un marketer más potente</li>
+        <li>✅ Saber leer los flujos de datos te permite no depender ciegamente de otros</li>
+        <li>✅ <strong>Medir fue el primer paso. Interpretar… es lo que marca la diferencia.</strong></li>
+      </ul>
+    </div>
+  </section>
 </BloqueLayout>

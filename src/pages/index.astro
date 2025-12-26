@@ -1,111 +1,167 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import { bloques } from '../content/course'
+import Layout from '../layouts/Layout.astro';
+
+const blocks = [
+  {
+    id: 0,
+    title: "¿Qué es GTM?",
+    subtitle: "Introducción al ecosistema",
+    icon: "🎯",
+    time: "15 min",
+    href: "/seccion-0",
+    color: "from-blue-500/20 to-cyan-500/20",
+    border: "border-blue-500"
+  },
+  {
+    id: 1,
+    title: "La Torre de Control",
+    subtitle: "Tags, Triggers y Variables",
+    icon: "🏗️",
+    time: "25 min",
+    href: "/bloque-1",
+    color: "from-emerald-500/20 to-green-500/20",
+    border: "border-emerald-500"
+  },
+  {
+    id: 2,
+    title: "El Lenguaje de Eventos",
+    subtitle: "DataLayer y anatomía de eventos",
+    icon: "🧠",
+    time: "30 min",
+    href: "/bloque-2",
+    color: "from-purple-500/20 to-pink-500/20",
+    border: "border-purple-500"
+  },
+  {
+    id: 3,
+    title: "El Ojo que Todo lo Ve",
+    subtitle: "Verificación y QA",
+    icon: "👁️",
+    time: "25 min",
+    href: "/bloque-3",
+    color: "from-amber-500/20 to-orange-500/20",
+    border: "border-amber-500"
+  },
+  {
+    id: "demo",
+    title: "Demo Live",
+    subtitle: "Meta Pixel, GA4, CAPI",
+    icon: "🎬",
+    time: "Profesor",
+    href: "/demo-live",
+    color: "from-pink-500/20 to-rose-500/20",
+    border: "border-pink-500"
+  },
+  {
+    id: 4,
+    title: "Arquitectos del Funnel",
+    subtitle: "Diseño de funnels de conversión",
+    icon: "🏛️",
+    time: "25 min",
+    href: "/bloque-4",
+    color: "from-teal-500/20 to-cyan-500/20",
+    border: "border-teal-500"
+  },
+  {
+    id: 5,
+    title: "Escuchar al Dato",
+    subtitle: "De métricas a insights",
+    icon: "🎧",
+    time: "20 min",
+    href: "/bloque-5",
+    color: "from-indigo-500/20 to-blue-500/20",
+    border: "border-indigo-500"
+  },
+  {
+    id: 6,
+    title: "Server-side GTM",
+    subtitle: "El futuro del tracking",
+    icon: "🔒",
+    time: "45 min",
+    href: "/bloque-6",
+    color: "from-green-500/20 to-emerald-500/20",
+    border: "border-green-500"
+  }
+];
 ---
 
-<Layout title="La Evolución del Tagging | Curso GTM">
+<Layout title="Evolution of Tagging - Curso GTM">
   <!-- Hero -->
-  <section class="min-h-[90vh] flex items-center justify-center px-6 py-20">
-    <div class="max-w-4xl mx-auto text-center">
-      <span class="pill mb-6">Curso interactivo</span>
-      
-      <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-        La Evolución del
-        <span class="text-primary-dark">Tagging</span>
-      </h1>
-      
-      <p class="text-xl md:text-2xl text-ink-light mb-4 max-w-2xl mx-auto">
-        De cero a estratega de datos.
-      </p>
-      
-      <p class="text-lg text-ink-light/70 mb-12 max-w-xl mx-auto">
-        Un viaje gamificado para dominar Google Tag Manager, 
-        entender los datos y tomar decisiones que importan.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/seccion-0" class="btn-primary text-lg px-8 py-4">
-          Comenzar aventura →
-        </a>
-        <a href="#contenido" class="btn-secondary text-lg px-8 py-4">
-          Ver contenido
-        </a>
+  <section class="py-20 text-center">
+    <div class="text-8xl mb-6 animate-bounce">🚀</div>
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+      Evolution of Tagging
+    </h1>
+    <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-8">
+      El curso definitivo de Google Tag Manager para marketers. De cero a estratega de datos.
+    </p>
+    
+    <div class="flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">⏱️</span>
+        <span>~3.5 horas</span>
       </div>
-
-      <div class="flex justify-center gap-8 mt-16 text-sm text-ink-light">
-        <div class="text-center">
-          <p class="text-2xl font-bold text-ink">8</p>
-          <p>Bloques</p>
-        </div>
-        <div class="text-center">
-          <p class="text-2xl font-bold text-ink">~4h</p>
-          <p>Total</p>
-        </div>
-        <div class="text-center">
-          <p class="text-2xl font-bold text-ink">15+</p>
-          <p>Ejercicios</p>
-        </div>
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">📚</span>
+        <span>8 secciones</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🎮</span>
+        <span>Minijuegos incluidos</span>
       </div>
     </div>
   </section>
 
-  <!-- Contenido -->
-  <section id="contenido" class="px-6 py-20 bg-cream-dark">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
-        Tu viaje de aprendizaje
-      </h2>
-      <p class="text-ink-light text-center mb-16 max-w-2xl mx-auto">
-        Cada bloque te lleva un paso más cerca de dominar GTM. 
-        Sin atajos, sin humo, con práctica real.
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        {bloques.map((bloque) => (
-          <a 
-            href={`/${bloque.id}`}
-            class="card group hover:border-primary transition-all duration-300"
-          >
-            <div class="flex items-start gap-4">
-              <span class="text-4xl">{bloque.icono}</span>
-              <div class="flex-1">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="text-xs font-medium text-ink-light uppercase tracking-wide">
-                    {bloque.numero === 0 ? 'Intro' : `Bloque ${bloque.numero}`}
-                  </span>
-                  <span class="text-xs text-ink-light/60">•</span>
-                  <span class="text-xs text-ink-light/60">{bloque.duracion}</span>
-                </div>
-                <h3 class="text-xl font-semibold mb-1 group-hover:text-primary-dark transition-colors">
-                  {bloque.titulo}
-                </h3>
-                <p class="text-sm text-ink-light mb-3">{bloque.subtitulo}</p>
-                <p class="text-sm text-ink-light/70">{bloque.descripcion}</p>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
+  <!-- Bloques -->
+  <section class="py-12">
+    <h2 class="text-3xl font-bold text-center mb-12">📚 Contenido del Curso</h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      {blocks.map((block) => (
+        <a 
+          href={block.href}
+          class={`group block p-6 rounded-2xl bg-gradient-to-br ${block.color} border-l-4 ${block.border} hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10`}
+        >
+          <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">
+            {block.icon}
+          </div>
+          <div class="text-xs text-slate-400 mb-1">
+            {typeof block.id === 'number' ? `Bloque ${block.id}` : block.id}
+          </div>
+          <h3 class="text-lg font-bold mb-2 group-hover:text-emerald-400 transition-colors">
+            {block.title}
+          </h3>
+          <p class="text-sm text-slate-400 mb-4">
+            {block.subtitle}
+          </p>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <span>⏱️</span>
+            <span>{block.time}</span>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 
-  <!-- CTA Final -->
-  <section class="px-6 py-20">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">
-        ¿Listo para empezar?
-      </h2>
-      <p class="text-ink-light mb-8">
-        No necesitas conocimientos previos. Solo curiosidad y ganas de entender cómo funcionan los datos.
+  <!-- CTA -->
+  <section class="py-20 text-center">
+    <div class="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 rounded-3xl p-12 max-w-3xl mx-auto border border-emerald-500/20">
+      <h2 class="text-3xl font-bold mb-4">¿Preparado para dominar GTM?</h2>
+      <p class="text-slate-300 mb-8">
+        Empieza por el principio. Te prometemos que al final hablarás el idioma de los datos.
       </p>
-      <a href="/seccion-0" class="btn-primary text-lg px-10 py-4">
-        Comenzar el curso →
+      <a 
+        href="/seccion-0" 
+        class="inline-block px-8 py-4 bg-emerald-500 text-white font-bold rounded-lg hover:bg-emerald-600 transition-colors text-lg"
+      >
+        🚀 Comenzar Aventura
       </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="px-6 py-10 border-t border-cream-dark text-center text-ink-light text-sm">
-    <p>La Evolución del Tagging © {new Date().getFullYear()}</p>
+  <footer class="py-8 text-center text-slate-500 text-sm border-t border-slate-800">
+    <p>Evolution of Tagging © 2024 — Un curso de GTM con ❤️</p>
+    <p class="mt-2">Construido con Astro + Tailwind + React</p>
   </footer>
 </Layout>
